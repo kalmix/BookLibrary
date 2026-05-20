@@ -1,6 +1,8 @@
 using System;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
 using BookLibrary.BLL;
 using BookLibrary.DAL;
 using BookLibrary.Entities.Models;
@@ -15,6 +17,12 @@ public partial class MainForm : Form
     public MainForm()
     {
         InitializeComponent();
+        var icoPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "buklib.ico");
+        if (File.Exists(icoPath))
+        {
+            this.Icon = new Icon(icoPath);
+        }
+
         var context = new LibraryContext();
         _bookService = new BookService(context);
     }

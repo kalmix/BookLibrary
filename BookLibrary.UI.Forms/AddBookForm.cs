@@ -1,5 +1,7 @@
 using System;
+using System.IO;
 using System.Windows.Forms;
+using System.Drawing;
 using BookLibrary.BLL;
 using BookLibrary.Entities.Models;
 
@@ -12,6 +14,16 @@ public partial class AddBookForm : Form
     public AddBookForm(BookService bookService)
     {
         InitializeComponent();
+        var addIco = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "add.ico");
+        var defaultIco = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "buklib.ico");
+        if (File.Exists(addIco))
+        {
+            this.Icon = new Icon(addIco);
+        }
+        else if (File.Exists(defaultIco))
+        {
+            this.Icon = new Icon(defaultIco);
+        }
         _bookService = bookService;
     }
 
