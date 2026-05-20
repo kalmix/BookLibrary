@@ -4,13 +4,11 @@
   <img src=".github/assets/logo.png" alt="BookLibrary logo" width="180" />
 </p>
 
-<p align="center">
   ![.NET 8](https://img.shields.io/badge/.NET-8.0-512BD4)
   ![Lenguaje-C#](https://img.shields.io/badge/Lenguaje-C%23-239120)
   ![Plataforma-Windows](https://img.shields.io/badge/Plataforma-Windows-0078D6)
   ![UI-WinUI%203](https://img.shields.io/badge/UI-WinUI%203-3C87C7)
   ![UI-WinForms](https://img.shields.io/badge/UI-WinForms-8A2BE2)
-</p>
 
 Aplicación de escritorio para gestionar una pequeña biblioteca de libros local. Incluye una versión con WinUI 3 y otra con Windows Forms. Utiliza Entity Framework Core para la gestión de datos con una base de datos sqllocaldb.
 
