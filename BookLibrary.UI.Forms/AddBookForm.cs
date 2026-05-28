@@ -9,6 +9,7 @@ namespace BookLibrary.UI.Forms;
 
 public partial class AddBookForm : Form
 {
+    private bool loaded = false;
     private readonly BookService _bookService;
 
     public AddBookForm(BookService bookService)
@@ -65,6 +66,51 @@ public partial class AddBookForm : Form
     }
 
     private void txtTitle_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void txtAuthor_KeyPress(object sender, KeyPressEventArgs e)
+    {
+        // solo permitir letras, espacios, backspace y (,.;)
+        if (!char.IsLetter(e.KeyChar) &&
+        !char.IsWhiteSpace(e.KeyChar) &&
+        !char.IsControl(e.KeyChar) &&
+        e.KeyChar != '.' &&
+        e.KeyChar != ',' &&
+        e.KeyChar != ';')
+        {
+            e.Handled = true;
+        }
+    }
+
+    private void txtAuthor_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+    private void AddBookForm_Shown(object sender, EventArgs e)
+    {
+        loaded = true;
+    }
+
+    private void txtAuthor_Enter(object sender, EventArgs e)
+    {
+        ToolTip toolTipAuthor = new ToolTip();
+        toolTipAuthor.ToolTipTitle = "Nombre Del Autor (e.j. J. Verne)";
+        toolTipAuthor.Show("Solo se permiten letras, espacios y estos caracteres especiales (,.;)", txtAuthor);
+    }
+
+    private void txtTitle_Enter(object sender, EventArgs e)
+    {
+        if (loaded)
+        {
+            ToolTip toolTipTitle = new ToolTip();
+            toolTipTitle.ToolTipTitle = "Titulo (e.j. El Quijote)";
+            toolTipTitle.Show("Se permite cualquier caracter", txtTitle);
+        }
+    }
+
+    private void lblTitle_Click(object sender, EventArgs e)
     {
 
     }

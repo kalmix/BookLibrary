@@ -28,7 +28,6 @@ namespace BookLibrary.UI.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddBookForm));
             lblTitle = new Label();
             txtTitle = new TextBox();
             lblAuthor = new Label();
@@ -45,9 +44,10 @@ namespace BookLibrary.UI.Forms
             lblTitle.Font = new Font("Roboto", 9F);
             lblTitle.Location = new Point(12, 15);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(41, 14);
+            lblTitle.Size = new Size(57, 14);
             lblTitle.TabIndex = 0;
-            lblTitle.Text = "Titulo:";
+            lblTitle.Text = "Titulo (*):";
+            lblTitle.Click += lblTitle_Click;
             // 
             // txtTitle
             // 
@@ -56,6 +56,7 @@ namespace BookLibrary.UI.Forms
             txtTitle.Size = new Size(315, 23);
             txtTitle.TabIndex = 1;
             txtTitle.TextChanged += txtTitle_TextChanged;
+            txtTitle.Enter += txtTitle_Enter;
             // 
             // lblAuthor
             // 
@@ -63,9 +64,9 @@ namespace BookLibrary.UI.Forms
             lblAuthor.Font = new Font("Roboto", 9F);
             lblAuthor.Location = new Point(12, 44);
             lblAuthor.Name = "lblAuthor";
-            lblAuthor.Size = new Size(40, 14);
+            lblAuthor.Size = new Size(56, 14);
             lblAuthor.TabIndex = 2;
-            lblAuthor.Text = "Autor:";
+            lblAuthor.Text = "Autor (*):";
             // 
             // txtAuthor
             // 
@@ -73,6 +74,9 @@ namespace BookLibrary.UI.Forms
             txtAuthor.Name = "txtAuthor";
             txtAuthor.Size = new Size(315, 23);
             txtAuthor.TabIndex = 3;
+            txtAuthor.TextChanged += txtAuthor_TextChanged;
+            txtAuthor.Enter += txtAuthor_Enter;
+            txtAuthor.KeyPress += txtAuthor_KeyPress;
             // 
             // lblPdfPath
             // 
@@ -80,12 +84,13 @@ namespace BookLibrary.UI.Forms
             lblPdfPath.Font = new Font("Roboto", 9F);
             lblPdfPath.Location = new Point(12, 73);
             lblPdfPath.Name = "lblPdfPath";
-            lblPdfPath.Size = new Size(33, 14);
+            lblPdfPath.Size = new Size(49, 14);
             lblPdfPath.TabIndex = 4;
-            lblPdfPath.Text = "PDF:";
+            lblPdfPath.Text = "PDF (*):";
             // 
             // txtPdfPath
             // 
+            txtPdfPath.Enabled = false;
             txtPdfPath.Location = new Point(82, 70);
             txtPdfPath.Name = "txtPdfPath";
             txtPdfPath.Size = new Size(234, 23);
@@ -139,13 +144,13 @@ namespace BookLibrary.UI.Forms
             Controls.Add(txtTitle);
             Controls.Add(lblTitle);
             FormBorderStyle = FormBorderStyle.FixedDialog;
-            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "AddBookForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Agregar Libro";
             Load += AddBookForm_Load;
+            Shown += AddBookForm_Shown;
             ResumeLayout(false);
             PerformLayout();
 

@@ -40,6 +40,9 @@ public class BookService
         if (string.IsNullOrWhiteSpace(book.Author))
             throw new ArgumentException("El autor es requerido.");
 
+        if (book.Author.Any(c => !char.IsLetter(c) && !char.IsWhiteSpace(c) && c != '.' && c != ',' && c != ';'))
+            throw new ArgumentException("El nombre del autor contiene caracteres no validos.");
+
         if (string.IsNullOrWhiteSpace(book.PdfPath) || !book.PdfPath.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
             throw new ArgumentException("Un archivo PDF valido es requerido.");
 
