@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -25,7 +26,47 @@ public partial class AddBookViewModel : ObservableObject
     [ObservableProperty]
     private string _errorMessage = string.Empty;
 
+    [ObservableProperty]
+    private string _titleError = string.Empty;
+
+    [ObservableProperty]
+    private string _authorError = string.Empty;
+
+    [ObservableProperty]
+    private string _pdfError = string.Empty;
+
     public event Action? OnBookAdded;
+
+    partial void OnTitleChanged(string value)
+    {
+        TitleError = string.Empty;
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            TitleError = "El titulo es requerido.";
+        }
+    }
+
+    partial void OnAuthorChanged(string value)
+    {
+        AuthorError = string.Empty;
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            AuthorError = "El autor es requerido.";
+        }
+        else if (value.Any(c => !char.IsLetter(c) && !char.IsWhiteSpace(c) && c != '.' && c != ',' && c != ';'))
+        {
+            AuthorError = "El nombre del autor contiene caracteres no validos.";
+        }
+    }
+
+    partial void OnPdfPathChanged(string value)
+    {
+        PdfError = string.Empty;
+        if (string.IsNullOrWhiteSpace(value) || !value.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
+        {
+            PdfError = "Un archivo PDF valido es requerido.";
+        }
+    }
 
     public AddBookViewModel(BookService bookService)
     {
@@ -38,6 +79,39 @@ public partial class AddBookViewModel : ObservableObject
         try
         {
             ErrorMessage = string.Empty;
+            TitleError = string.Empty;
+            AuthorError = string.Empty;
+            PdfError = string.Empty;
+
+            bool hasError = false;
+
+            if (string.IsNullOrWhiteSpace(Title))
+            {
+                TitleError = "El titulo es requerido.";
+                hasError = true;
+            }
+
+            if (string.IsNullOrWhiteSpace(Author))
+            {
+                AuthorError = "El autor es requerido.";
+                hasError = true;
+            }
+            else if (Author.Any(c => !char.IsLetter(c) && !char.IsWhiteSpace(c) && c != '.' && c != ',' && c != ';'))
+            {
+                AuthorError = "El nombre del autor contiene caracteres no validos.";
+                hasError = true;
+            }
+
+            if (string.IsNullOrWhiteSpace(PdfPath) || !PdfPath.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
+            {
+                PdfError = "Un archivo PDF valido es requerido.";
+                hasError = true;
+            }
+
+            if (hasError)
+            {
+                return;
+            }
 
             var newBook = new Book
             {
@@ -46,7 +120,6 @@ public partial class AddBookViewModel : ObservableObject
                 PdfPath = PdfPath
             };
 
-            // Generar thumbnail
             if (!string.IsNullOrWhiteSpace(PdfPath))
             {
                 string fullPdfPath = Path.Combine(AppContext.BaseDirectory, PdfPath);
@@ -78,13 +151,11 @@ public partial class AddBookViewModel : ObservableObject
                             memStream.Seek(0);
                             await memStream.AsStreamForRead().CopyToAsync(fileStream);
 
-                            // Hacemos lo mismo que con el PDF para obtener la ruta relativa
                             newBook.CoverImagePath = Path.Combine("Storage", "Covers", coverFileName);
                         }
                     }
                     catch (Exception ex)
                     {
-                        // para que no falle todo si no se puede generar el thumbnail
                         Debug.WriteLine($"[DEBUG] Error al generar el thumbnail: {ex.Message}");
                     }
                 }
@@ -92,6 +163,10 @@ public partial class AddBookViewModel : ObservableObject
 
             await _bookService.AddBookAsync(newBook);
             OnBookAdded?.Invoke();
+        }
+        catch (InvalidOperationException ex)
+        {
+            TitleError = ex.Message;
         }
         catch (Exception ex)
         {

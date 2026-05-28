@@ -55,9 +55,22 @@ public partial class HomeViewModel : ObservableObject
         
         try 
         {
-            if (File.Exists(book.PdfPath))
+            var pdfPath = Path.IsPathRooted(book.PdfPath)
+                ? book.PdfPath
+                : Path.Combine(AppContext.BaseDirectory, book.PdfPath);
+
+            if (!Path.IsPathRooted(book.PdfPath) && !File.Exists(pdfPath))
             {
-                File.Delete(book.PdfPath);
+                var appxPath = Path.Combine(AppContext.BaseDirectory, "AppX", book.PdfPath);
+                if (File.Exists(appxPath))
+                {
+                    pdfPath = appxPath;
+                }
+            }
+
+            if (File.Exists(pdfPath))
+            {
+                File.Delete(pdfPath);
             }
         }
         catch {}
@@ -68,19 +81,25 @@ public partial class HomeViewModel : ObservableObject
     [RelayCommand]
     private void OpenPdf(Book? book)
     {
-        if (book == null || string.IsNullOrWhiteSpace(book.PdfPath)) return; // prevenir errores por rutas vacías o nulas
+        if (book == null || string.IsNullOrWhiteSpace(book.PdfPath)) return;
 
-        // Si la ruta ya es absoluta (ej. agregado desde WinForms), la usamos directamente.
-        // Si es relativa (ej. agregado desde WinUI con copia a Storage/Books/), la combinamos con el directorio base.
         var fullPath = Path.IsPathRooted(book.PdfPath)
             ? book.PdfPath
             : Path.Combine(AppContext.BaseDirectory, book.PdfPath);
+
+        if (!Path.IsPathRooted(book.PdfPath) && !File.Exists(fullPath))
+        {
+            var appxPath = Path.Combine(AppContext.BaseDirectory, "AppX", book.PdfPath);
+            if (File.Exists(appxPath))
+            {
+                fullPath = appxPath;
+            }
+        }
 
         if (File.Exists(fullPath))
         {
             try
             {
-                // dejamos que el OS lo abra como quiera
                 Process.Start(new ProcessStartInfo()
                 {
                     FileName = fullPath,

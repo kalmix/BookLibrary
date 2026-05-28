@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using System.Drawing;
 using BookLibrary.BLL;
@@ -9,12 +10,16 @@ namespace BookLibrary.UI.Forms;
 
 public partial class AddBookForm : Form
 {
-    private bool loaded = false;
     private readonly BookService _bookService;
+    private readonly ErrorProvider _errorProvider;
 
     public AddBookForm(BookService bookService)
     {
         InitializeComponent();
+        _errorProvider = new ErrorProvider();
+        _errorProvider.ContainerControl = this;
+        _errorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+
         var addIco = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "add.ico");
         var defaultIco = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "buklib.ico");
         if (File.Exists(addIco))
@@ -30,6 +35,38 @@ public partial class AddBookForm : Form
 
     private async void btnSave_Click(object sender, EventArgs e)
     {
+        _errorProvider.Clear();
+
+        bool hasError = false;
+
+        if (string.IsNullOrWhiteSpace(txtTitle.Text))
+        {
+            _errorProvider.SetError(txtTitle, "El titulo es requerido.");
+            hasError = true;
+        }
+
+        if (string.IsNullOrWhiteSpace(txtAuthor.Text))
+        {
+            _errorProvider.SetError(txtAuthor, "El autor es requerido.");
+            hasError = true;
+        }
+        else if (txtAuthor.Text.Any(c => !char.IsLetter(c) && !char.IsWhiteSpace(c) && c != '.' && c != ',' && c != ';'))
+        {
+            _errorProvider.SetError(txtAuthor, "El nombre del autor contiene caracteres no validos.");
+            hasError = true;
+        }
+
+        if (string.IsNullOrWhiteSpace(txtPdfPath.Text) || !txtPdfPath.Text.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
+        {
+            _errorProvider.SetError(txtPdfPath, "Un archivo PDF valido es requerido.");
+            hasError = true;
+        }
+
+        if (hasError)
+        {
+            return;
+        }
+
         try
         {
             var book = new Book
@@ -44,9 +81,13 @@ public partial class AddBookForm : Form
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
+        catch (InvalidOperationException ex)
+        {
+            _errorProvider.SetError(txtTitle, ex.Message);
+        }
         catch (Exception ex)
         {
-            MessageBox.Show(ex.Message, "Error al guardar el libro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show(ex.Message, "Error al guardar el libro", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 
@@ -57,61 +98,35 @@ public partial class AddBookForm : Form
         if (ofd.ShowDialog() == DialogResult.OK)
         {
             txtPdfPath.Text = ofd.FileName;
+            _errorProvider.SetError(txtPdfPath, string.Empty);
         }
     }
 
     private void AddBookForm_Load(object sender, EventArgs e)
     {
-
     }
 
     private void txtTitle_TextChanged(object sender, EventArgs e)
     {
-
-    }
-
-    private void txtAuthor_KeyPress(object sender, KeyPressEventArgs e)
-    {
-        // solo permitir letras, espacios, backspace y (,.;)
-        if (!char.IsLetter(e.KeyChar) &&
-        !char.IsWhiteSpace(e.KeyChar) &&
-        !char.IsControl(e.KeyChar) &&
-        e.KeyChar != '.' &&
-        e.KeyChar != ',' &&
-        e.KeyChar != ';')
+        if (!string.IsNullOrWhiteSpace(txtTitle.Text))
         {
-            e.Handled = true;
+            _errorProvider.SetError(txtTitle, string.Empty);
         }
     }
 
     private void txtAuthor_TextChanged(object sender, EventArgs e)
     {
-
+        if (!string.IsNullOrWhiteSpace(txtAuthor.Text) && !txtAuthor.Text.Any(c => !char.IsLetter(c) && !char.IsWhiteSpace(c) && c != '.' && c != ',' && c != ';'))
+        {
+            _errorProvider.SetError(txtAuthor, string.Empty);
+        }
     }
+
     private void AddBookForm_Shown(object sender, EventArgs e)
     {
-        loaded = true;
-    }
-
-    private void txtAuthor_Enter(object sender, EventArgs e)
-    {
-        ToolTip toolTipAuthor = new ToolTip();
-        toolTipAuthor.ToolTipTitle = "Nombre Del Autor (e.j. J. Verne)";
-        toolTipAuthor.Show("Solo se permiten letras, espacios y estos caracteres especiales (,.;)", txtAuthor);
-    }
-
-    private void txtTitle_Enter(object sender, EventArgs e)
-    {
-        if (loaded)
-        {
-            ToolTip toolTipTitle = new ToolTip();
-            toolTipTitle.ToolTipTitle = "Titulo (e.j. El Quijote)";
-            toolTipTitle.Show("Se permite cualquier caracter", txtTitle);
-        }
     }
 
     private void lblTitle_Click(object sender, EventArgs e)
     {
-
     }
 }

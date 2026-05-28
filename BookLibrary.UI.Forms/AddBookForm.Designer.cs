@@ -56,7 +56,6 @@ namespace BookLibrary.UI.Forms
             txtTitle.Size = new Size(315, 23);
             txtTitle.TabIndex = 1;
             txtTitle.TextChanged += txtTitle_TextChanged;
-            txtTitle.Enter += txtTitle_Enter;
             // 
             // lblAuthor
             // 
@@ -75,8 +74,6 @@ namespace BookLibrary.UI.Forms
             txtAuthor.Size = new Size(315, 23);
             txtAuthor.TabIndex = 3;
             txtAuthor.TextChanged += txtAuthor_TextChanged;
-            txtAuthor.Enter += txtAuthor_Enter;
-            txtAuthor.KeyPress += txtAuthor_KeyPress;
             // 
             // lblPdfPath
             // 
@@ -134,7 +131,7 @@ namespace BookLibrary.UI.Forms
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(409, 161);
+            ClientSize = new Size(427, 161);
             Controls.Add(btnSave);
             Controls.Add(btnBrowse);
             Controls.Add(txtPdfPath);

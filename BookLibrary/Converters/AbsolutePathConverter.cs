@@ -12,9 +12,24 @@ public class AbsolutePathConverter : IValueConverter
         if (value is string relativePath && !string.IsNullOrWhiteSpace(relativePath))
         {
             var absolutePath = Path.Combine(AppContext.BaseDirectory, relativePath);
+            if (!File.Exists(absolutePath))
+            {
+                absolutePath = Path.Combine(AppContext.BaseDirectory, "AppX", relativePath);
+            }
+
             if (File.Exists(absolutePath))
             {
-                return new BitmapImage(new Uri(absolutePath));
+                try
+                {
+                    var bitmap = new BitmapImage();
+                    using var stream = File.OpenRead(absolutePath);
+                    bitmap.SetSource(stream.AsRandomAccessStream());
+                    return bitmap;
+                }
+                catch
+                {
+                    return new BitmapImage(new Uri(absolutePath));
+                }
             }
         }
         

@@ -8,11 +8,18 @@
     mc:Ignorable="d"
     Background="Transparent">
 
-    <StackPanel Padding="36" Spacing="24" MaxWidth="600" HorizontalAlignment="Left">
+    <StackPanel Padding="36" Spacing="20" MaxWidth="600" HorizontalAlignment="Left">
         <TextBlock Text="Agregar Nuevo Libro" FontSize="28" FontWeight="SemiBold" Margin="0,0,0,16"/>
 
-        <TextBox Header="Titulo del Libro" Text="{x:Bind ViewModel.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PlaceholderText="Ingrese el título del libro"/>
-        <TextBox Header="Autor" Text="{x:Bind ViewModel.Author, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PlaceholderText="Ingrese el nombre del autor"/>
+        <StackPanel Spacing="4">
+            <TextBox Header="Titulo del Libro" Text="{x:Bind ViewModel.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PlaceholderText="Ingrese el título del libro"/>
+            <TextBlock Text="{x:Bind ViewModel.TitleError, Mode=OneWay}" Foreground="{ThemeResource SystemFillColorCriticalBrush}" FontSize="12" TextWrapping="Wrap"/>
+        </StackPanel>
+
+        <StackPanel Spacing="4">
+            <TextBox Header="Autor" Text="{x:Bind ViewModel.Author, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PlaceholderText="Ingrese el nombre del autor"/>
+            <TextBlock Text="{x:Bind ViewModel.AuthorError, Mode=OneWay}" Foreground="{ThemeResource SystemFillColorCriticalBrush}" FontSize="12" TextWrapping="Wrap"/>
+        </StackPanel>
 
         <StackPanel Spacing="8">
             <TextBlock Text="Archivo PDF" Style="{ThemeResource BodyTextBlockStyle}"/>
@@ -20,6 +27,7 @@
                 <Button Content="Buscar PDF..." Click="SelectPdf_Click"/>
                 <TextBlock Text="{x:Bind ViewModel.PdfPath, Mode=OneWay}" VerticalAlignment="Center" TextWrapping="Wrap" MaxWidth="400" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
             </StackPanel>
+            <TextBlock Text="{x:Bind ViewModel.PdfError, Mode=OneWay}" Foreground="{ThemeResource SystemFillColorCriticalBrush}" FontSize="12" TextWrapping="Wrap"/>
         </StackPanel>
 
         <TextBlock Text="{x:Bind ViewModel.ErrorMessage, Mode=OneWay}" Foreground="{ThemeResource SystemFillColorCriticalBrush}" TextWrapping="Wrap"/>

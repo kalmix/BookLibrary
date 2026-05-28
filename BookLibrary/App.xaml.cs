@@ -71,9 +71,15 @@ namespace BookLibrary
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            // Ensure Database is created and migrated
-            var context = Services.GetRequiredService<LibraryContext>();
-            context.Database.Migrate();
+            try
+            {
+                var context = Services.GetRequiredService<LibraryContext>();
+                context.Database.Migrate();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+            }
 
             _window = new MainWindow();
             _window.Activate();
