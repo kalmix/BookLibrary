@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arquitectura de Computadores — Edición Digital</title>
+
+  <!-- KaTeX -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+  <!-- Lucide icons -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.378.0/dist/umd/lucide.min.js"></script>
+
+  <!-- Estilos Rediseñados Externos -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="theme-sepia font-serif-mode size-md">
+
+<!-- Barra superior móvil -->
+<header class="mobile-header">
+  <button class="menu-toggle-btn" id="mobile-menu-toggle" aria-label="Abrir menú">
+    <i data-lucide="menu"></i>
+  </button>
+  <span class="mobile-title">Arquitectura de Computadores</span>
+  <div style="width: 32px;"></div>
+</header>
+
+<div class="app-container">
+  
+  <!-- Barra de progreso de lectura -->
+  <div class="progress-container">
+    <div class="progress-bar" id="reading-progress"></div>
+  </div>
+
+  <!-- Barra lateral (Sidebar Navigation) -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      Arquitectura<br><em>de Computadores</em>
+    </div>
+    <ul class="sidebar-menu">
+      <li class="sidebar-item active"><a href="#cover"><i data-lucide="book-open" width="16" height="16"></i> Portada</a></li>
+      <li class="sidebar-item"><a href="#toc"><i data-lucide="list" width="16" height="16"></i> Índice</a></li>
+      
+      <li class="sidebar-sep"></li>
+      
+      <li class="sidebar-item"><a href="#cap1"><i data-lucide="hash" width="16" height="16"></i> Cap. I — Historia</a></li>
+      <li class="sidebar-item"><a href="#cap2"><i data-lucide="hash" width="16" height="16"></i> Cap. II — Componentes</a></li>
+      <li class="sidebar-item"><a href="#cap3"><i data-lucide="hash" width="16" height="16"></i> Cap. III — Arquitecturas</a></li>
+      <li class="sidebar-item"><a href="#cap4"><i data-lucide="hash" width="16" height="16"></i> Cap. IV — Fundamentos</a></li>
+    </ul>
+  </aside>
+
+  <!-- Contenido principal -->
+  <main class="content-wrapper">
+
+    <!-- ════════════ PORTADA EDITORIAL ════════════ -->
+    <div id="cover">
+      <div class="cover-container">
+        <div class="cover-text">
+          <span class="cover-series">Ciencias de la Computación &nbsp;·&nbsp; Investigación Académica</span>
+          <h1 class="cover-title">Arquitectura<br>de <em>Computadores</em></h1>
+          <p class="cover-sub">Historia de la computación, componentes básicos y fundamentos de los sistemas digitales modernos.</p>
+          <div class="cover-meta-grid">
+            <div class="cover-meta-item">
+              <strong>Volumen / Edición</strong>
+              Volumen I · Edición 2025
+            </div>
+            <div class="cover-meta-item">
+              <strong>Autor</strong>
+              Dra. Ana García
+            </div>
+          </div>
+        </div>
+        <div class="cover-art-wrapper">
+          <img src="assets/cover_illustration.png" alt="Ilustración de Portada — Arquitectura de Computadores" class="cover-art-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- Contenedor del libro -->
+    <div class="book">
+
+      <!-- ════════════ ÍNDICE ════════════ -->
+      <div class="toc-wrap" id="toc">
+        <p class="toc-heading">Tabla de Contenidos</p>
+        <ul class="toc-list">
+          <li class="toc-chapter"><span>Capítulo I — Historia de la Computación</span></li>
+          <li><a href="#s-precursores">1.1 Precursores mecánicos</a><span class="toc-pnum">§ 1</span></li>
+          <li><a href="#s-turing">1.2 La Máquina de Turing</a><span class="toc-pnum">§ 2</span></li>
+          <li><a href="#s-eniac">1.3 ENIAC y la era electrónica</a><span class="toc-pnum">§ 3</span></li>
+          <li><a href="#s-vneumann">1.4 Arquitectura von Neumann</a><span class="toc-pnum">§ 4</span></li>
+          <li><a href="#s-generaciones">1.5 Las cinco generaciones</a><span class="toc-pnum">§ 5</span></li>
+          <li class="toc-chapter"><span>Capítulo II — Componentes Básicos</span></li>
+          <li><a href="#s-cpu">2.1 Unidad Central de Proceso (CPU)</a><span class="toc-pnum">§ 6</span></li>
+          <li><a href="#s-memoria">2.2 Jerarquía de memoria</a><span class="toc-pnum">§ 7</span></li>
+          <li><a href="#s-io">2.3 Dispositivos de Entrada/Salida</a><span class="toc-pnum">§ 8</span></li>
+          <li class="toc-chapter"><span>Capítulo III — Arquitecturas y Buses</span></li>
+          <li><a href="#s-risc-cisc">3.1 RISC vs. CISC</a><span class="toc-pnum">§ 9</span></li>
+          <li><a href="#s-buses">3.2 El bus del sistema</a><span class="toc-pnum">§ 10</span></li>
+          <li class="toc-chapter"><span>Capítulo IV — Fundamentos Digitales</span></li>
+          <li><a href="#s-pipeline">4.1 Pipeline y paralelismo</a><span class="toc-pnum">§ 11</span></li>
+          <li><a href="#s-logica">4.2 Álgebra de Boole y circuitos</a><span class="toc-pnum">§ 12</span></li>
+        </ul>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════
+           CAPÍTULO I
+      ══════════════════════════════════════════════════ -->
+      <div class="ch-wrap" id="cap1">
+        <div class="ch-number">I</div>
+        <div class="ch-header-content">
+          <div class="ch-label">Capítulo Primero</div>
+          <h1 class="ch-title">Historia de la<br><em>Computación</em></h1>
+        </div>
+      </div>
+
+      <!-- § 1.1 -->
+      <section id="s-precursores">
+      <h2>1.1 Precursores Mecánicos</h2>
+
+      <p class="ch-intro">Mucho antes de que existiera la electrónica, la humanidad construyó mecanismos capaces de realizar cálculos automáticamente. Este camino, que va del ábaco a los circuitos integrados, tomó tres milenios y sentó todas las ideas arquitectónicas que siguen vigentes.</p>
+
+<div class="fig">
+  <img src="https://images.unsplash.com/photo-1548690596-f1722c190938?q=80&w=1174&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Ábaco">
+  <p class="fig-cap"><b>Fig. 1.1</b> El ábaco, utilizado desde hace más de tres mil años, es el primer dispositivo de cómputo conocido. La posición de cada cuenta codifica un dígito posicional, principio que sobrevive en la representación binaria moderna.</p>
+</div>
+
+<h3>La Pascalina (1642)</h3>
+<p>Blaise Pascal construyó a los dieciocho años la <em>Pascalina</em>, una calculadora mecánica de engranajes capaz de sumar y restar números de hasta ocho dígitos. Su mecanismo de "acarreo" —una rueda que avanzaba la siguiente columna al completar diez— es análogo directo del desbordamiento de bits en aritmética binaria.</p>
+
+<div class="fig">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Arts_et_Metiers_Pascaline_dsc03869.jpg/1920px-Arts_et_Metiers_Pascaline_dsc03869.jpg" alt="Pascalina">
+  <p class="fig-cap"><b>Fig. 1.2</b> La Pascalina (1642), conservada en el Musée des Arts et Métiers de París. Fue la primera calculadora mecánica funcional de la historia.</p>
+</div>
+
+<h3>La Analytical Engine de Babbage (1837)</h3>
+<p>Charles Babbage diseñó la <em>Analytical Engine</em> introduciendo conceptos que no serían materializados hasta un siglo después:</p>
+
+<div class="icon-grid" id="babbage-cards"></div>
+
+<div class="callout">
+  <strong>Ada Lovelace</strong>
+  Ada Lovelace comprendió algo que ni siquiera Babbage articuló: la Analytical Engine podía <em>manipular símbolos arbitrarios</em> según reglas, no solo calcular con números. Publicó en 1843 el primer algoritmo destinado a ser procesado por una máquina —el cálculo de los números de Bernoulli— y es considerada la primera programadora de la historia.
+</div>
+</section>
+
+<!-- § 1.2 -->
+<section id="s-turing">
+<h2>1.2 La Máquina de Turing</h2>
+
+<p>En 1936, Alan Turing publicó <em>On Computable Numbers</em>, definiendo con rigor formal qué significa computar algo. Propuso un dispositivo abstracto —hoy llamado Máquina de Turing— que fundamenta toda la teoría de la computabilidad.</p>
+
+<h3>Definición formal</h3>
+<p>Una Máquina de Turing se especifica como una 7-tupla:</p>
+
+<div class="math-env">
+  <div class="math-label">Definición — Máquina de Turing</div>
+  $$M = \bigl(Q,\;\Sigma,\;\Gamma,\;\delta,\;q_0,\;q_{\text{accept}},\;q_{\text{reject}}\bigr)$$
+  <p style="font-size:0.85rem;color:var(--mid);margin-top:0.8rem;">
+    $Q$ — estados finitos; $\;\Sigma$ — alfabeto de entrada; $\;\Gamma$ — alfabeto de cinta ($\Sigma\subseteq\Gamma$);
+    $\;\delta:Q\times\Gamma\to Q\times\Gamma\times\{L,R\}$ — función de transición;
+    $\;q_0$ — estado inicial; $\;q_{\text{accept}}, q_{\text{reject}}$ — estados terminales.
+  </p>
+</div>
+
+<div class="diagram">
+  <svg viewBox="0 0 660 180" width="100%" xmlns="http://www.w3.org/2000/svg"
+       font-family="KaTeX_Main,Georgia,serif" font-size="11">
+    <!-- Cinta -->
+    <rect x="30" y="72" width="600" height="56" rx="3" fill="#fafaf8" stroke="#bbb" stroke-width="1"/>
+    <g stroke="#ddd" stroke-width="1">
+      <line x1="106" y1="72" x2="106" y2="128"/>
+      <line x1="182" y1="72" x2="182" y2="128"/>
+      <line x1="258" y1="72" x2="258" y2="128"/>
+      <line x1="334" y1="72" x2="334" y2="128"/>
+      <line x1="410" y1="72" x2="410" y2="128"/>
+      <line x1="486" y1="72" x2="486" y2="128"/>
+      <line x1="562" y1="72" x2="562" y2="128"/>
+    </g>
+    <!-- Símbolos en celdas -->
+    <text x="68"  y="106" text-anchor="middle" font-size="16" fill="#555">0</text>
+    <text x="144" y="106" text-anchor="middle" font-size="16" fill="#555">1</text>
+    <text x="220" y="106" text-anchor="middle" font-size="16" fill="#555">1</text>
+    <text x="296" y="106" text-anchor="middle" font-size="16" fill="#8b1a1a" font-weight="bold">0</text>
+    <text x="372" y="106" text-anchor="middle" font-size="16" fill="#555">1</text>
+    <text x="448" y="106" text-anchor="middle" font-size="16" fill="#bbb">▢</text>
+    <text x="524" y="106" text-anchor="middle" font-size="16" fill="#bbb">▢</text>
+    <text x="600" y="106" text-anchor="middle" font-size="13" fill="#bbb">···</text>
+    <!-- Cabezal -->
+    <rect x="265" y="36" width="62" height="24" rx="2" fill="#1c1c1c"/>
+    <text x="296" y="53" text-anchor="middle" font-size="9" fill="#fff" font-family="KaTeX_SansSerif,sans-serif" letter-spacing="0.06em">CABEZAL</text>
+    <polygon points="296,70 284,36 308,36" fill="#8b1a1a"/>
+    <!-- Estado -->
+    <rect x="265" y="140" width="62" height="24" rx="12" fill="#8b1a1a"/>
+    <text x="296" y="157" text-anchor="middle" font-size="11" fill="#fff">$q_2$</text>
+    <!-- Etiquetas dirección -->
+    <text x="95"  y="170" text-anchor="middle" font-size="10" fill="#bbb">← L</text>
+    <text x="497" y="170" text-anchor="middle" font-size="10" fill="#bbb">R →</text>
+    <!-- Título -->
+    <text x="330" y="20" text-anchor="middle" font-size="10" fill="#bbb" font-style="italic">Cinta infinita en ambas direcciones</text>
+  </svg>
+  <p class="diagram-cap"><b>Fig. 1.3</b> Máquina de Turing: el cabezal lee y escribe un símbolo, luego se desplaza $L$ o $R$ según $\delta$. El estado actual determina la acción.</p>
+</div>
+
+<p>La <em>tesis de Church–Turing</em> establece que cualquier función computable puede calcularse con una Máquina de Turing. Todo computador real —sin importar su arquitectura— es formalmente equivalente en poder expresivo a esta máquina abstracta.</p>
+</section>
+
+<!-- § 1.3 -->
+<section id="s-eniac">
+<h2>1.3 ENIAC y el Nacimiento de la Era Electrónica</h2>
+
+<p>En 1945, Eckert y Mauchly completaron en la Universidad de Pensilvania el <em>Electronic Numerical Integrator And Computer</em> (ENIAC), el primer computador digital electrónico de propósito general a gran escala.</p>
+
+<div class="fig">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/8/8c/Two_women_operating_ENIAC_%28full_resolution%29.jpg" alt="ENIAC">
+  <p class="fig-cap"><b>Fig. 1.4</b> El ENIAC (1945) en el Moore School of Engineering, Filadelfia. Pesaba 30 toneladas, ocupaba 167 m² y utilizaba 17 468 tubos de vacío.</p>
+</div>
+
+<table class="data-table">
+  <thead><tr><th>Característica</th><th>ENIAC (1945)</th><th>Procesador moderno (2024)</th></tr></thead>
+  <tbody>
+    <tr><td>Tecnología</td><td>17 468 tubos de vacío</td><td>~80 000 M transistores (3 nm)</td></tr>
+    <tr><td>Velocidad</td><td>5 000 sumas/s</td><td>&gt; 10<sup>12</sup> operaciones/s</td></tr>
+    <tr><td>Peso / área</td><td>30 t — 167 m²</td><td>&lt; 20 g — &lt; 200 mm²</td></tr>
+    <tr><td>Consumo</td><td>150 kW</td><td>~5–15 W (móvil)</td></tr>
+    <tr><td>Almacenamiento</td><td>20 palabras de 10 dígitos</td><td>GB – TB</td></tr>
+    <tr><td>Programación</td><td>Reconexión de cables físicos</td><td>Lenguajes de alto nivel</td></tr>
+  </tbody>
+</table>
+</section>
+
+<!-- § 1.4 -->
+<section id="s-vneumann">
+<h2>1.4 La Arquitectura von Neumann</h2>
+
+<p>El <em>First Draft of a Report on the EDVAC</em> (von Neumann, 1945) estableció el modelo arquitectónico dominante hasta hoy: programa y datos residen en la misma memoria, y la CPU los procesa secuencialmente.</p>
+
+<div class="diagram">
+  <svg viewBox="0 0 660 290" width="100%" xmlns="http://www.w3.org/2000/svg"
+       font-family="KaTeX_Main,Georgia,serif" font-size="11">
+    <!-- CPU box -->
+    <rect x="30" y="40" width="220" height="200" rx="3" fill="none" stroke="#1c1c1c" stroke-width="1.5"/>
+    <text x="140" y="32" text-anchor="middle" font-size="9" font-family="KaTeX_SansSerif,sans-serif" letter-spacing="0.1em" fill="#555" text-transform="uppercase">UNIDAD CENTRAL DE PROCESO</text>
+
+    <!-- ALU -->
+    <rect x="48" y="58" width="86" height="68" rx="2" fill="#1c1c1c"/>
+    <text x="91" y="88" text-anchor="middle" fill="#fff" font-size="12">ALU</text>
+    <text x="91" y="105" text-anchor="middle" fill="#bbb" font-size="9">Aritmética</text>
+    <text x="91" y="118" text-anchor="middle" fill="#bbb" font-size="9">y Lógica</text>
+
+    <!-- UC -->
+    <rect x="148" y="58" width="86" height="68" rx="2" fill="#1c1c1c"/>
+    <text x="191" y="88" text-anchor="middle" fill="#fff" font-size="12">UC</text>
+    <text x="191" y="105" text-anchor="middle" fill="#bbb" font-size="9">Control</text>
+    <text x="191" y="118" text-anchor="middle" fill="#bbb" font-size="9">/ Decode</text>
+
+    <!-- Registros -->
+    <rect x="48" y="144" width="186" height="44" rx="2" fill="#8b1a1a"/>
+    <text x="141" y="163" text-anchor="middle" fill="#fff" font-size="11">Registros</text>
+    <text x="141" y="179" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="9">PC · IR · MAR · MDR · ACC</text>
+
+    <!-- Memoria -->
+    <rect x="410" y="60" width="130" height="170" rx="3" fill="none" stroke="#8b1a1a" stroke-width="1.5"/>
+    <text x="475" y="52" text-anchor="middle" font-size="9" font-family="KaTeX_SansSerif,sans-serif" letter-spacing="0.1em" fill="#8b1a1a">MEMORIA</text>
+    <rect x="424" y="74"  width="102" height="22" rx="2" fill="#f0ebe2" stroke="#ddd" stroke-width="0.5"/>
+    <text x="475" y="90" text-anchor="middle" font-size="9" fill="#555">Instrucciones</text>
+    <rect x="424" y="100" width="102" height="22" rx="2" fill="#f0ebe2" stroke="#ddd" stroke-width="0.5"/>
+    <text x="475" y="116" text-anchor="middle" font-size="9" fill="#555">Datos</text>
+    <rect x="424" y="126" width="102" height="22" rx="2" fill="#f0ebe2" stroke="#ddd" stroke-width="0.5"/>
+    <text x="475" y="142" text-anchor="middle" font-size="9" fill="#555">Datos</text>
+    <text x="475" y="188" text-anchor="middle" font-size="14" fill="#bbb">···</text>
+
+    <!-- Bus de datos -->
+    <line x1="250" y1="155" x2="410" y2="155" stroke="#8b1a1a" stroke-width="2.5"/>
+    <polygon points="405,150 418,155 405,160" fill="#8b1a1a"/>
+    <text x="330" y="148" text-anchor="middle" font-size="8" font-family="KaTeX_SansSerif,sans-serif" fill="#8b1a1a" letter-spacing="0.06em">BUS DE DATOS</text>
+
+    <!-- Bus de direcciones -->
+    <line x1="250" y1="110" x2="410" y2="110" stroke="#1c1c1c" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <polygon points="405,105 418,110 405,115" fill="#1c1c1c"/>
+    <text x="330" y="103" text-anchor="middle" font-size="8" font-family="KaTeX_SansSerif,sans-serif" fill="#555" letter-spacing="0.06em">BUS DIREC.</text>
+
+    <!-- E/S -->
+    <rect x="220" y="265" width="220" height="24" rx="2" fill="none" stroke="#555" stroke-width="1"/>
+    <text x="330" y="282" text-anchor="middle" font-size="10" fill="#555">Entrada / Salida</text>
+    <!-- Conector E/S -->
+    <line x1="140" y1="240" x2="140" y2="265" stroke="#555" stroke-width="1" stroke-dasharray="3,2"/>
+    <line x1="475" y1="230" x2="475" y2="265" stroke="#555" stroke-width="1" stroke-dasharray="3,2"/>
+  </svg>
+  <p class="diagram-cap"><b>Fig. 1.5</b> Arquitectura von Neumann: programa y datos comparten el mismo bus hacia la CPU, lo que genera el "cuello de botella" de von Neumann.</p>
+</div>
+
+<div class="math-env">
+  <div class="math-label">Cuello de botella — throughput efectivo del bus compartido</div>
+  $$B_{\text{eff}} = \frac{B_{\text{bus}}}{1 + \dfrac{f_{\text{inst}}}{f_{\text{data}}}}$$
+  <p style="font-size:0.84rem;color:var(--mid);margin-top:0.7rem;">$B_{\text{bus}}$ — ancho de banda total del bus; $f_{\text{inst}}$ — tasa de búsqueda de instrucciones; $f_{\text{data}}$ — tasa de acceso a datos.</p>
+</div>
+</section>
+
+<!-- § 1.5 -->
+<section id="s-generaciones">
+<h2>1.5 Las Cinco Generaciones de Computadores</h2>
+
+<div class="gen-list">
+  <div class="gen-item">
+    <div class="gen-num">I</div>
+    <div>
+      <div class="gen-meta">1940 – 1956</div>
+      <div class="gen-title">Tubos de vacío</div>
+      <div class="gen-body">ENIAC, UNIVAC I, EDVAC. Máquinas de decenas de kilowatts, con alta tasa de fallos, programadas en lenguaje máquina o mediante reconexión física de cables. Almacenamiento en tarjetas perforadas y tambores magnéticos.</div>
+    </div>
+  </div>
+  <div class="gen-item">
+    <div class="gen-num">II</div>
+    <div>
+      <div class="gen-meta">1956 – 1963</div>
+      <div class="gen-title">Transistores</div>
+      <div class="gen-body">El transistor (Bell Labs, 1947) reemplazó al tubo: más pequeño, fiable y eficiente. Aparecen FORTRAN y COBOL. IBM 7094, UNIVAC 1108. Primeros sistemas operativos.</div>
+    </div>
+  </div>
+  <div class="gen-item">
+    <div class="gen-num">III</div>
+    <div>
+      <div class="gen-meta">1963 – 1971</div>
+      <div class="gen-title">Circuitos integrados</div>
+      <div class="gen-body">Kilby (TI) y Noyce (Fairchild) integran múltiples transistores en un solo chip de silicio. IBM System/360 unifica familias compatibles. Multiprogramación y tiempo compartido.</div>
+    </div>
+  </div>
+  <div class="gen-item">
+    <div class="gen-num">IV</div>
+    <div>
+      <div class="gen-meta">1971 – presente</div>
+      <div class="gen-title">Microprocesadores y VLSI</div>
+      <div class="gen-body">Intel 4004 (1971): toda la CPU en un chip. La Ley de Moore gobierna décadas de progreso. Nacen el PC, Windows, Internet y los smartphones. VLSI permite pasar de miles a miles de millones de transistores por chip.</div>
+    </div>
+  </div>
+  <div class="gen-item">
+    <div class="gen-num">V</div>
+    <div>
+      <div class="gen-meta">2000 – presente</div>
+      <div class="gen-title">IA, nube y computación cuántica</div>
+      <div class="gen-body">Aceleradores para IA (TPUs, GPUs), computación distribuida en la nube y primeros computadores cuánticos funcionales (IBM Quantum, Google Sycamore). Nodos de fabricación de 3 nm con más de 15 000 millones de transistores.</div>
+    </div>
+  </div>
+</div>
+
+<h3>La Ley de Moore — modelo cuantitativo</h3>
+<div class="math-env">
+  <div class="math-label">Crecimiento exponencial de transistores</div>
+  $$N(t) = N_0 \cdot 2^{\,\dfrac{t-t_0}{T_d}}$$
+  <p style="font-size:0.84rem;color:var(--mid);margin-top:0.7rem;">$N_0 = 2300$ (Intel 4004, 1971); $T_d \approx 1.5$ años (tiempo histórico de duplicación); $t_0 = 1971$.</p>
+</div>
+
+<div class="chart-wrap">
+  <canvas id="mooreLawChart" height="120"></canvas>
+  <p class="chart-cap"><b>Fig. 1.6</b> Crecimiento del número de transistores por chip (escala logarítmica). Los datos siguen fielmente el modelo exponencial de Moore hasta aproximadamente 2015, cuando los efectos cuánticos comienzan a limitar la miniaturización.</p>
+</div>
+
+<h3>Línea del tiempo</h3>
+<div class="timeline">
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1642</div><div class="tl-text">Pascalina — primera calculadora mecánica funcional.</div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1837</div><div class="tl-text">Analytical Engine de Babbage — primer diseño de computador de propósito general.</div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1936</div><div class="tl-text">Máquina de Turing — fundamentos teóricos formales de la computación.</div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1945</div><div class="tl-text">ENIAC + arquitectura von Neumann — primer computador electrónico y modelo dominante.</div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1947</div><div class="tl-text">Transistor — Shockley, Bardeen y Brattain en Bell Labs.</div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1958</div><div class="tl-text">Circuito integrado — Kilby y Noyce, primera integración monolítica.</div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1971</div><div class="tl-text">Intel 4004 — primer microprocesador comercial, 2 300 transistores a 10 µm.</div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1981</div><div class="tl-text">IBM PC — populariza la arquitectura x86 en el mercado de consumo.</div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2006</div><div class="tl-text">Amazon Web Services — nace la computación en la nube moderna.</div></div>
+  <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2019</div><div class="tl-text">Google Sycamore — supremacía cuántica: 200 s vs. 10 000 años de supercomputadora clásica.</div></div>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     CAPÍTULO II
+══════════════════════════════════════════════════ -->
+<div class="ch-wrap" id="cap2">
+  <div class="ch-number">II</div>
+  <div class="ch-header-content">
+    <div class="ch-label">Capítulo Segundo</div>
+    <h1 class="ch-title">Componentes Básicos<br>de un <em>Computador</em></h1>
+  </div>
+</div>
+
+<!-- § 2.1 CPU -->
+<section id="s-cpu">
+<h2>2.1 Unidad Central de Proceso</h2>
+
+<p class="ch-intro">La CPU es el componente que ejecuta instrucciones. Opera al ritmo de un reloj interno (clock), recuperando instrucciones de memoria, decodificándolas y ejecutándolas. Su rendimiento se mide en instrucciones por segundo (IPS) y en ciclos por instrucción (CPI).</p>
+
+<div class="fig">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/80486dx2-large.jpg" alt="Intel 486">
+  <p class="fig-cap"><b>Fig. 2.1</b> Intel 80486DX2 (1992). La cuadrícula de pines conecta el procesador con la placa base; cada pin corresponde a una línea del bus de datos, direcciones o control.</p>
+</div>
+
+<div class="icon-grid" id="cpu-cards"></div>
+
+<h3>El ciclo Fetch — Decode — Execute</h3>
+
+<div class="diagram">
+  <svg viewBox="0 0 580 100" width="100%" xmlns="http://www.w3.org/2000/svg"
+       font-family="KaTeX_SansSerif,sans-serif" font-size="10" letter-spacing="0.05em">
+    <!-- Fetch -->
+    <rect x="20" y="16" width="130" height="68" rx="3" fill="#1c1c1c"/>
+    <text x="85" y="43" text-anchor="middle" fill="#fff" font-size="12" font-family="KaTeX_Main,Georgia,serif">Fetch</text>
+    <text x="85" y="60" text-anchor="middle" fill="#bbb" font-size="9">Buscar instrucción</text>
+    <text x="85" y="73" text-anchor="middle" fill="#bbb" font-size="9">en memoria (PC)</text>
+    <!-- Arrow -->
+    <line x1="150" y1="50" x2="210" y2="50" stroke="#8b1a1a" stroke-width="2"/>
+    <polygon points="205,45 218,50 205,55" fill="#8b1a1a"/>
+    <!-- Decode -->
+    <rect x="218" y="16" width="130" height="68" rx="3" fill="#333"/>
+    <text x="283" y="43" text-anchor="middle" fill="#fff" font-size="12" font-family="KaTeX_Main,Georgia,serif">Decode</text>
+    <text x="283" y="60" text-anchor="middle" fill="#bbb" font-size="9">Decodificar opcode</text>
+    <text x="283" y="73" text-anchor="middle" fill="#bbb" font-size="9">y operandos</text>
+    <!-- Arrow -->
+    <line x1="348" y1="50" x2="408" y2="50" stroke="#8b1a1a" stroke-width="2"/>
+    <polygon points="403,45 416,50 403,55" fill="#8b1a1a"/>
+    <!-- Execute -->
+    <rect x="416" y="16" width="144" height="68" rx="3" fill="#8b1a1a"/>
+    <text x="488" y="43" text-anchor="middle" fill="#fff" font-size="12" font-family="KaTeX_Main,Georgia,serif">Execute</text>
+    <text x="488" y="60" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9">ALU opera,</text>
+    <text x="488" y="73" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9">escribe resultado</text>
+  </svg>
+  <p class="diagram-cap"><b>Fig. 2.2</b> El ciclo Fetch–Decode–Execute. Al completarse, el Contador de Programa (PC) se incrementa y el ciclo reinicia.</p>
+</div>
+
+<h3>Métricas de rendimiento</h3>
+<div class="math-env">
+  <div class="math-label">Tiempo de ejecución y MIPS</div>
+  $$T_{\text{exec}} = N_{\text{inst}} \times \text{CPI} \times \frac{1}{f_{\text{clock}}}$$
+  $$\text{MIPS} = \frac{f_{\text{clock}}}{\text{CPI} \times 10^{6}}$$
+</div>
+
+<div class="note">
+  <span class="note-lbl">Ley de Amdahl</span>
+  Al paralelizar una fracción $p$ de un programa en $n$ procesadores, el speedup máximo está acotado por la porción secuencial:
+  $$S(n) = \frac{1}{(1-p)+\dfrac{p}{n}} \;\xrightarrow{n\to\infty}\; \frac{1}{1-p}$$
+  Si el $5\%$ del programa es estrictamente secuencial, el speedup máximo posible es $20\times$, independientemente del número de núcleos.
+</div>
+</section>
+
+<!-- § 2.2 Memoria -->
+<section id="s-memoria">
+<h2>2.2 Jerarquía de Memoria</h2>
+
+<p>La memoria de un computador moderno es una jerarquía de tecnologías con distintas velocidades, tamaños y costos. El principio de localidad temporal y espacial permite que las capas superiores —más rápidas y pequeñas— capturen la gran mayoría de los accesos.</p>
+
+<div class="chart-wrap">
+  <canvas id="memChart" height="130"></canvas>
+  <p class="chart-cap"><b>Fig. 2.3</b> Latencia vs. capacidad de los niveles de la jerarquía de memoria. Nótese la escala logarítmica en ambos ejes: la brecha entre registros y disco abarca diez órdenes de magnitud en latencia.</p>
+</div>
+
+<table class="data-table">
+  <thead><tr><th>Nivel</th><th>Tecnología</th><th>Latencia</th><th>Capacidad típica</th><th>Volátil</th></tr></thead>
+  <tbody>
+    <tr><td>Registros</td><td>SRAM (flip-flops)</td><td>1 ciclo</td><td>32–256 × 64 bits</td><td>Sí</td></tr>
+    <tr><td>Caché L1</td><td>SRAM</td><td>4–8 ciclos</td><td>32–64 kB</td><td>Sí</td></tr>
+    <tr><td>Caché L2</td><td>SRAM</td><td>12–50 ciclos</td><td>256 kB–2 MB</td><td>Sí</td></tr>
+    <tr><td>Caché L3</td><td>SRAM</td><td>~100 ciclos</td><td>4–64 MB</td><td>Sí</td></tr>
+    <tr><td>RAM (DRAM)</td><td>DRAM</td><td>50–200 ns</td><td>4–256 GB</td><td>Sí</td></tr>
+    <tr><td>SSD NVMe</td><td>NAND Flash</td><td>20–100 µs</td><td>500 GB–8 TB</td><td>No</td></tr>
+    <tr><td>HDD</td><td>Magnético</td><td>5–15 ms</td><td>1–20 TB</td><td>No</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <strong>Principios de localidad</strong>
+  <em>Temporal:</em> un dato accedido recientemente tiene alta probabilidad de volver a accederse pronto (bucles, contadores).
+  <br><em>Espacial:</em> si se accede a la dirección $A$, es probable que se acceda a $A \pm k$ pronto (arrays, instrucciones secuenciales).
+</div>
+
+<div class="math-env">
+  <div class="math-label">Tiempo Medio de Acceso a Memoria (AMAT)</div>
+  $$\text{AMAT} = t_{\text{hit}} + (1 - h) \cdot t_{\text{miss}}$$
+  <p style="font-size:0.84rem;color:var(--mid);margin-top:0.7rem;">$t_{\text{hit}}$ — latencia de caché; $t_{\text{miss}}$ — latencia de RAM; $h$ — tasa de aciertos (típicamente $0{,}90$–$0{,}99$).</p>
+</div>
+</section>
+
+<!-- § 2.3 I/O -->
+<section id="s-io">
+<h2>2.3 Dispositivos de Entrada y Salida</h2>
+
+<p>Los periféricos son la interfaz entre el computador y el mundo exterior. La selección de la técnica de transferencia tiene impacto directo en el rendimiento del sistema.</p>
+
+<div class="icon-grid" id="io-cards"></div>
+
+<h3>Técnicas de transferencia</h3>
+<table class="data-table">
+  <thead><tr><th>Técnica</th><th>Mecanismo</th><th>Ventaja</th><th>Uso típico</th></tr></thead>
+  <tbody>
+    <tr><td>Polling</td><td>CPU consulta continuamente el estado del dispositivo</td><td>Implementación simple</td><td>Dispositivos lentos, sistemas embebidos</td></tr>
+    <tr><td>Interrupciones</td><td>El dispositivo avisa a la CPU cuando tiene datos listos</td><td>CPU libre mientras espera</td><td>Teclado, red, disco</td></tr>
+    <tr><td>DMA</td><td>Controlador dedicado transfiere sin involucrar a la CPU</td><td>Alta velocidad; libera ciclos de CPU</td><td>SSD, tarjeta gráfica, red</td></tr>
+  </tbody>
+</table>
+
+<div class="fig">
+  <img src="https://noirlab.edu/science/sites/default/files/media/archives/documents/scidoc0742.png" alt="Placa base">
+  <p class="fig-cap"><b>Fig. 2.4</b> Diagrama funcional de una placa base (motherboard): interconexión entre CPU, RAM, chipset y periféricos a través de los buses del sistema.</p>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     CAPÍTULO III
+══════════════════════════════════════════════════ -->
+<div class="ch-wrap" id="cap3">
+  <div class="ch-number">III</div>
+  <div class="ch-header-content">
+    <div class="ch-label">Capítulo Tercero</div>
+    <h1 class="ch-title">Arquitecturas y<br><em>Buses del Sistema</em></h1>
+  </div>
+</div>
+
+<!-- § 3.1 RISC vs CISC -->
+<section id="s-risc-cisc">
+<h2>3.1 RISC vs. CISC</h2>
+
+<p class="ch-intro">Las dos filosofías dominantes en el diseño del conjunto de instrucciones (ISA) son <em>RISC</em> (Reduced Instruction Set Computer) y <em>CISC</em> (Complex Instruction Set Computer). La tensión entre ambas definió la industria del hardware durante los años 1980–2000.</p>
+
+<table class="data-table">
+  <thead><tr><th>Característica</th><th>CISC</th><th>RISC</th></tr></thead>
+  <tbody>
+    <tr><td>Instrucciones</td><td>Muchas y complejas; longitud variable</td><td>Pocas y simples; longitud fija</td></tr>
+    <tr><td>Ciclos / instrucción</td><td>Variable (1–20+ ciclos)</td><td>1 ciclo (idealmente)</td></tr>
+    <tr><td>Acceso a memoria</td><td>Directo en cualquier instrucción</td><td>Solo con LOAD / STORE explícitos</td></tr>
+    <tr><td>Registros</td><td>Pocos (8–16)</td><td>Muchos (32–256)</td></tr>
+    <tr><td>Pipeline</td><td>Complejo de implementar</td><td>Natural; facilita pipeline profundo</td></tr>
+    <tr><td>Ejemplos</td><td>x86, x86-64 (Intel, AMD)</td><td>ARM, RISC-V, MIPS, SPARC</td></tr>
+    <tr><td>Uso predominante</td><td>Computadoras de escritorio y servidores</td><td>Móviles, IoT, Apple Silicon</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <strong>La paradoja moderna</strong>
+  Los procesadores x86 modernos (Intel Core, AMD Ryzen) son CISC externamente, pero traducen internamente cada instrucción compleja en micro-operaciones de tipo RISC antes de ejecutarlas. Así obtienen compatibilidad binaria histórica y rendimiento de pipeline RISC simultáneamente.
+</div>
+</section>
+
+<!-- § 3.2 Buses -->
+<section id="s-buses">
+<h2>3.2 El Bus del Sistema</h2>
+
+<p>Un bus es un canal de comunicación compartido que interconecta los componentes del computador. Existen tres tipos de líneas en todo bus:</p>
+
+<div class="diagram">
+  <svg viewBox="0 0 620 180" width="100%" xmlns="http://www.w3.org/2000/svg"
+       font-family="KaTeX_SansSerif,sans-serif" font-size="9" letter-spacing="0.06em">
+    <!-- CPU -->
+    <rect x="16" y="56" width="96" height="68" rx="3" fill="#1c1c1c"/>
+    <text x="64" y="86" text-anchor="middle" fill="#fff" font-size="12" font-family="KaTeX_Main,Georgia,serif">CPU</text>
+    <text x="64" y="103" text-anchor="middle" fill="#bbb">Procesador</text>
+
+    <!-- Memoria -->
+    <rect x="252" y="56" width="96" height="68" rx="3" fill="#333"/>
+    <text x="300" y="86" text-anchor="middle" fill="#fff" font-size="12" font-family="KaTeX_Main,Georgia,serif">Mem.</text>
+    <text x="300" y="103" text-anchor="middle" fill="#bbb">DRAM</text>
+
+    <!-- E/S -->
+    <rect x="492" y="56" width="112" height="68" rx="3" fill="#8b1a1a"/>
+    <text x="548" y="86" text-anchor="middle" fill="#fff" font-size="12" font-family="KaTeX_Main,Georgia,serif">E / S</text>
+    <text x="548" y="103" text-anchor="middle" fill="rgba(255,255,255,0.7)">Controladores</text>
+
+    <!-- Bus datos -->
+    <rect x="112" y="62" width="380" height="12" rx="2" fill="#1c1c1c"/>
+    <text x="302" y="73" text-anchor="middle" fill="#fff">BUS DE DATOS (64 bits)</text>
+
+    <!-- Bus direcciones -->
+    <rect x="112" y="82" width="380" height="12" rx="2" fill="#555"/>
+    <text x="302" y="93" text-anchor="middle" fill="#fff">BUS DE DIRECCIONES (48–64 bits)</text>
+
+    <!-- Bus control -->
+    <rect x="112" y="102" width="380" height="12" rx="2" fill="#8b1a1a"/>
+    <text x="302" y="113" text-anchor="middle" fill="#fff">BUS DE CONTROL  (R/W · IRQ · CLK)</text>
+
+    <!-- Leyenda -->
+    <rect x="30"  y="148" width="10" height="8" fill="#1c1c1c"/>
+    <text x="46"  y="156" fill="#555">Datos</text>
+    <rect x="120" y="148" width="10" height="8" fill="#555"/>
+    <text x="136" y="156" fill="#555">Direcciones</text>
+    <rect x="240" y="148" width="10" height="8" fill="#8b1a1a"/>
+    <text x="256" y="156" fill="#555">Control</text>
+  </svg>
+  <p class="diagram-cap"><b>Fig. 3.1</b> Los tres buses del sistema. El bus de datos transfiere valores, el de direcciones indica la ubicación en memoria, y el de control coordina la operación mediante señales R/W, interrupciones y reloj.</p>
+</div>
+
+<div class="math-env">
+  <div class="math-label">Ancho de banda del bus</div>
+  $$BW = f_{\text{bus}} \times W_{\text{bus}} \times \eta$$
+  <p style="font-size:0.84rem;color:var(--mid);margin-top:0.7rem;">$f_{\text{bus}}$ — frecuencia; $W_{\text{bus}}$ — ancho en bytes (p.ej. 8 B para 64 bits); $\eta$ — eficiencia considerando overhead de protocolo.</p>
+</div>
+
+<table class="data-table">
+  <thead><tr><th>Estándar</th><th>Año</th><th>Ancho</th><th>Velocidad máx.</th></tr></thead>
+  <tbody>
+    <tr><td>ISA</td><td>1981</td><td>8 / 16 bits</td><td>8 MB/s</td></tr>
+    <tr><td>PCI</td><td>1992</td><td>32 / 64 bits</td><td>533 MB/s</td></tr>
+    <tr><td>PCIe 1.0 ×16</td><td>2003</td><td>Serial</td><td>4 GB/s</td></tr>
+    <tr><td>PCIe 4.0 ×16</td><td>2017</td><td>Serial</td><td>64 GB/s</td></tr>
+    <tr><td>PCIe 5.0 ×16</td><td>2019</td><td>Serial</td><td>128 GB/s</td></tr>
+    <tr><td>PCIe 6.0 ×16</td><td>2022</td><td>Serial</td><td>256 GB/s</td></tr>
+  </tbody>
+</table>
+
+<div class="chart-wrap">
+  <canvas id="busChart" height="100"></canvas>
+  <p class="chart-cap"><b>Fig. 3.2</b> Evolución del ancho de banda del bus PCIe desde 2003. El crecimiento exponencial —aproximadamente duplicando cada generación— sigue una pauta análoga a la Ley de Moore.</p>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     CAPÍTULO IV
+══════════════════════════════════════════════════ -->
+<div class="ch-wrap" id="cap4">
+  <div class="ch-number">IV</div>
+  <div class="ch-header-content">
+    <div class="ch-label">Capítulo Cuarto</div>
+    <h1 class="ch-title">Fundamentos Digitales:<br><em>Pipeline y Álgebra de Boole</em></h1>
+  </div>
+</div>
+
+<!-- § 4.1 Pipeline -->
+<section id="s-pipeline">
+<h2>4.1 Pipeline y Paralelismo a Nivel de Instrucción</h2>
+
+<p class="ch-intro">El <em>pipeline</em> (segmentación de cauce) divide el ciclo de ejecución en etapas independientes que operan simultáneamente sobre instrucciones distintas, de la misma forma que una cadena de montaje industrial procesa varios productos en paralelo.</p>
+
+<div class="diagram">
+  <!-- Pipeline Gantt diagram -->
+  <svg viewBox="0 0 640 200" width="100%" xmlns="http://www.w3.org/2000/svg"
+       font-family="KaTeX_SansSerif,sans-serif" font-size="9">
+    <!-- Cabeceras ciclos -->
+    <g fill="#bbb">
+      <text x="188" y="14" text-anchor="middle">C1</text>
+      <text x="248" y="14" text-anchor="middle">C2</text>
+      <text x="308" y="14" text-anchor="middle">C3</text>
+      <text x="368" y="14" text-anchor="middle">C4</text>
+      <text x="428" y="14" text-anchor="middle">C5</text>
+      <text x="488" y="14" text-anchor="middle">C6</text>
+      <text x="548" y="14" text-anchor="middle">C7</text>
+      <text x="608" y="14" text-anchor="middle">C8</text>
+    </g>
+    <!-- Etiquetas instrucciones -->
+    <g fill="#555" font-style="italic">
+      <text x="72" y="45" text-anchor="end">Inst 1</text>
+      <text x="72" y="90" text-anchor="end">Inst 2</text>
+      <text x="72" y="135" text-anchor="end">Inst 3</text>
+      <text x="72" y="180" text-anchor="end">Inst 4</text>
+    </g>
+    <!-- Colores por etapa -->
+    <!-- IF=#1c1c1c  ID=#333  EX=#555  MEM=#8b1a1a  WB=#bbb -->
+
+    <!-- Inst 1 -->
+    <rect x="158" y="24" width="60" height="26" rx="2" fill="#1c1c1c"/><text x="188" y="42" text-anchor="middle" fill="#fff">IF</text>
+    <rect x="218" y="24" width="60" height="26" rx="2" fill="#333"/><text x="248" y="42" text-anchor="middle" fill="#fff">ID</text>
+    <rect x="278" y="24" width="60" height="26" rx="2" fill="#555"/><text x="308" y="42" text-anchor="middle" fill="#fff">EX</text>
+    <rect x="338" y="24" width="60" height="26" rx="2" fill="#8b1a1a"/><text x="368" y="42" text-anchor="middle" fill="#fff">MEM</text>
+    <rect x="398" y="24" width="60" height="26" rx="2" fill="#bbb"/><text x="428" y="42" text-anchor="middle" fill="#1c1c1c">WB</text>
+
+    <!-- Inst 2 -->
+    <rect x="218" y="68" width="60" height="26" rx="2" fill="#1c1c1c"/><text x="248" y="86" text-anchor="middle" fill="#fff">IF</text>
+    <rect x="278" y="68" width="60" height="26" rx="2" fill="#333"/><text x="308" y="86" text-anchor="middle" fill="#fff">ID</text>
+    <rect x="338" y="68" width="60" height="26" rx="2" fill="#555"/><text x="368" y="86" text-anchor="middle" fill="#fff">EX</text>
+    <rect x="398" y="68" width="60" height="26" rx="2" fill="#8b1a1a"/><text x="428" y="86" text-anchor="middle" fill="#fff">MEM</text>
+    <rect x="458" y="68" width="60" height="26" rx="2" fill="#bbb"/><text x="488" y="86" text-anchor="middle" fill="#1c1c1c">WB</text>
+
+    <!-- Inst 3 -->
+    <rect x="278" y="112" width="60" height="26" rx="2" fill="#1c1c1c"/><text x="308" y="130" text-anchor="middle" fill="#fff">IF</text>
+    <rect x="338" y="112" width="60" height="26" rx="2" fill="#333"/><text x="368" y="130" text-anchor="middle" fill="#fff">ID</text>
+    <rect x="398" y="112" width="60" height="26" rx="2" fill="#555"/><text x="428" y="130" text-anchor="middle" fill="#fff">EX</text>
+    <rect x="458" y="112" width="60" height="26" rx="2" fill="#8b1a1a"/><text x="488" y="130" text-anchor="middle" fill="#fff">MEM</text>
+    <rect x="518" y="112" width="60" height="26" rx="2" fill="#bbb"/><text x="548" y="130" text-anchor="middle" fill="#1c1c1c">WB</text>
+
+    <!-- Inst 4 -->
+    <rect x="338" y="156" width="60" height="26" rx="2" fill="#1c1c1c"/><text x="368" y="174" text-anchor="middle" fill="#fff">IF</text>
+    <rect x="398" y="156" width="60" height="26" rx="2" fill="#333"/><text x="428" y="174" text-anchor="middle" fill="#fff">ID</text>
+    <rect x="458" y="156" width="60" height="26" rx="2" fill="#555"/><text x="488" y="174" text-anchor="middle" fill="#fff">EX</text>
+    <rect x="518" y="156" width="60" height="26" rx="2" fill="#8b1a1a"/><text x="548" y="174" text-anchor="middle" fill="#fff">MEM</text>
+    <rect x="578" y="156" width="50" height="26" rx="2" fill="#bbb"/><text x="603" y="174" text-anchor="middle" fill="#1c1c1c">WB</text>
+  </svg>
+  <p class="diagram-cap"><b>Fig. 4.1</b> Diagrama de Gantt del pipeline de 5 etapas. En el ciclo 5, cuatro instrucciones se ejecutan simultáneamente en etapas distintas, alcanzando el throughput teórico máximo.</p>
+</div>
+
+<div class="math-env">
+  <div class="math-label">Speedup teórico del pipeline de $k$ etapas</div>
+  $$S_k = \frac{k \cdot T_{\text{ciclo}}}{T_{\text{ciclo}} + (k-1)\cdot t_{\text{latch}}} \;\xrightarrow{n\to\infty}\; k$$
+</div>
+
+<h3>Hazards del pipeline</h3>
+<div class="icon-grid" id="hazard-cards"></div>
+</section>
+
+<!-- § 4.2 Álgebra de Boole -->
+<section id="s-logica">
+<h2>4.2 Álgebra de Boole y Circuitos Lógicos</h2>
+
+<p>Toda la electrónica digital se fundamenta en el álgebra de Boole (George Boole, 1854; aplicada a circuitos por Claude Shannon, 1937). Opera con dos valores: $0$ (falso) y $1$ (verdadero).</p>
+
+<div class="math-env">
+  <div class="math-label">Identidades fundamentales y leyes de De Morgan</div>
+  $$A \cdot 0 = 0 \qquad A \cdot 1 = A \qquad A \cdot \bar{A} = 0$$
+  $$A + 0 = A \qquad A + 1 = 1 \qquad A + \bar{A} = 1$$
+  $$\overline{A \cdot B} = \bar{A} + \bar{B} \quad(\text{De Morgan I}) \qquad \overline{A + B} = \bar{A} \cdot \bar{B} \quad(\text{De Morgan II})$$
+</div>
+
+<h3>Puertas lógicas fundamentales</h3>
+
+<div class="diagram">
+  <svg viewBox="0 0 640 210" width="100%" xmlns="http://www.w3.org/2000/svg"
+       font-family="KaTeX_Main,Georgia,serif">
+    <defs>
+      <marker id="arrowh" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+        <path d="M0,0 L6,3 L0,6 Z" fill="#555"/>
+      </marker>
+    </defs>
+
+    <!-- AND gate -->
+    <g transform="translate(30,30)">
+      <text x="60" y="-8" text-anchor="middle" font-size="11" fill="#1c1c1c" font-variant="small-caps">AND</text>
+      <!-- Body -->
+      <path d="M20,10 L20,70 L50,70 Q80,70 80,40 Q80,10 50,10 Z" fill="none" stroke="#1c1c1c" stroke-width="1.5"/>
+      <!-- Inputs -->
+      <line x1="0" y1="25" x2="20" y2="25" stroke="#555" stroke-width="1.2"/>
+      <line x1="0" y1="55" x2="20" y2="55" stroke="#555" stroke-width="1.2"/>
+      <!-- Output -->
+      <line x1="80" y1="40" x2="100" y2="40" stroke="#555" stroke-width="1.2"/>
+      <!-- Labels -->
+      <text x="-6" y="29" font-size="10" fill="#555" font-style="italic">A</text>
+      <text x="-6" y="59" font-size="10" fill="#555" font-style="italic">B</text>
+      <text x="103" y="44" font-size="10" fill="#8b1a1a" font-style="italic">A·B</text>
+      <!-- Truth table -->
+      <text x="30" y="100" text-anchor="middle" font-size="8.5" fill="#bbb" font-family="KaTeX_SansSerif,sans-serif">0·0=0</text>
+      <text x="30" y="112" text-anchor="middle" font-size="8.5" fill="#bbb" font-family="KaTeX_SansSerif,sans-serif">0·1=0</text>
+      <text x="30" y="124" text-anchor="middle" font-size="8.5" fill="#bbb" font-family="KaTeX_SansSerif,sans-serif">1·1=1</text>
+    </g>
+
+    <!-- OR gate -->
+    <g transform="translate(200,30)">
+      <text x="55" y="-8" text-anchor="middle" font-size="11" fill="#1c1c1c" font-variant="small-caps">OR</text>
+      <path d="M20,10 Q35,40 20,70 Q50,70 75,40 Q50,10 20,10 Z" fill="none" stroke="#1c1c1c" stroke-width="1.5"/>
+      <line x1="0" y1="25" x2="24" y2="25" stroke="#555" stroke-width="1.2"/>
+      <line x1="0" y1="55" x2="24" y2="55" stroke="#555" stroke-width="1.2"/>
+      <line x1="75" y1="40" x2="100" y2="40" stroke="#555" stroke-width="1.2"/>
+      <text x="-6" y="29" font-size="10" fill="#555" font-style="italic">A</text>
+      <text x="-6" y="59" font-size="10" fill="#555" font-style="italic">B</text>
+      <text x="103" y="44" font-size="10" fill="#8b1a1a" font-style="italic">A+B</text>
+      <text x="35" y="100" text-anchor="middle" font-size="8.5" fill="#bbb" font-family="KaTeX_SansSerif,sans-serif">0+0=0</text>
+      <text x="35" y="112" text-anchor="middle" font-size="8.5" fill="#bbb" font-family="KaTeX_SansSerif,sans-serif">0+1=1</text>
+      <text x="35" y="124" text-anchor="middle" font-size="8.5" fill="#bbb" font-family="KaTeX_SansSerif,sans-serif">1+1=1</text>
+    </g>
+
+    <!-- NOT gate -->
+    <g transform="translate(370,30)">
+      <text x="45" y="-8" text-anchor="middle" font-size="11" fill="#1c1c1c" font-variant="small-caps">NOT</text>
+      <polygon points="20,10 60,40 20,70" fill="none" stroke="#1c1c1c" stroke-width="1.5"/>
+      <circle cx="64" cy="40" r="4" fill="none" stroke="#1c1c1c" stroke-width="1.5"/>
+      <line x1="0" y1="40" x2="20" y2="40" stroke="#555" stroke-width="1.2"/>
+      <line x1="68" y1="40" x2="90" y2="40" stroke="#555" stroke-width="1.2"/>
+      <text x="-6" y="44" font-size="10" fill="#555" font-style="italic">A</text>
+      <text x="93" y="44" font-size="10" fill="#8b1a1a" font-style="italic">Ā</text>
+      <text x="35" y="100" text-anchor="middle" font-size="8.5" fill="#bbb" font-family="KaTeX_SansSerif,sans-serif">¬0 = 1</text>
+      <text x="35" y="112" text-anchor="middle" font-size="8.5" fill="#bbb" font-family="KaTeX_SansSerif,sans-serif">¬1 = 0</text>
+    </g>
+
+    <!-- XOR gate -->
+    <g transform="translate(510,30)">
+      <text x="55" y="-8" text-anchor="middle" font-size="11" fill="#1c1c1c" font-variant="small-caps">XOR</text>
+      <path d="M24,10 Q39,40 24,70 Q54,70 79,40 Q54,10 24,10 Z" fill="none" stroke="#1c1c1c" stroke-width="1.5"/>
+      <path d="M16,10 Q31,40 16,70" fill="none" stroke="#1c1c1c" stroke-width="1.5"/>
+      <line x1="0" y1="25" x2="27" y2="25" stroke="#555" stroke-width="1.2"/>
+      <line x1="0" y1="55" x2="27" y2="55" stroke="#555" stroke-width="1.2"/>
+      <line x1="79" y1="40" x2="100" y2="40" stroke="#555" stroke-width="1.2"/>
+      <text x="-6" y="29" font-size="10" fill="#555" font-style="italic">A</text>
+      <text x="-6" y="59" font-size="10" fill="#555" font-style="italic">B</text>
+      <text x="103" y="44" font-size="10" fill="#8b1a1a" font-style="italic">A⊕B</text>
+      <text x="40" y="100" text-anchor="middle" font-size="8.5" fill="#bbb" font-family="KaTeX_SansSerif,sans-serif">0⊕0=0</text>
+      <text x="40" y="112" text-anchor="middle" font-size="8.5" fill="#bbb" font-family="KaTeX_SansSerif,sans-serif">0⊕1=1</text>
+      <text x="40" y="124" text-anchor="middle" font-size="8.5" fill="#bbb" font-family="KaTeX_SansSerif,sans-serif">1⊕1=0</text>
+    </g>
+  </svg>
+  <p class="diagram-cap"><b>Fig. 4.2</b> Las cuatro puertas lógicas fundamentales con sus símbolos estándar IEC/ANSI y tablas de verdad. Con estas puertas puede construirse cualquier función booleana.</p>
+</div>
+
+<h3>Del álgebra al sumador binario</h3>
+<p>Un <em>Full Adder</em> de 1 bit recibe $A$, $B$ y el acarreo de entrada $C_{\text{in}}$, produciendo la suma $S$ y el acarreo de salida $C_{\text{out}}$:</p>
+
+<div class="math-env">
+  <div class="math-label">Full Adder — ecuaciones lógicas</div>
+  $$S = A \oplus B \oplus C_{\text{in}}$$
+  $$C_{\text{out}} = (A \cdot B) + \bigl(C_{\text{in}} \cdot (A \oplus B)\bigr)$$
+</div>
+
+<h3>Representación binaria y complemento a dos</h3>
+<div class="math-env">
+  <div class="math-label">Conversión posicional binario — decimal</div>
+  $$(b_{n-1}\,b_{n-2}\cdots b_1\,b_0)_2 = \sum_{i=0}^{n-1} b_i \cdot 2^i$$
+  <p style="font-size:0.84rem;color:var(--mid);margin-top:0.6rem;">Ejemplo: $(1011)_2 = 8+0+2+1 = 11_{10}$</p>
+</div>
+
+<div class="note">
+  <span class="note-lbl">Complemento a dos</span>
+  Los computadores representan enteros negativos en complemento a dos. Para negar un número de $n$ bits: invertir todos los bits y sumar $1$:
+  $$-x \;\equiv\; \bar{x} + 1 \pmod{2^n}$$
+  El rango representable es $[-2^{n-1},\;2^{n-1}-1]$. La suma en complemento a dos es idéntica a la de naturales, eliminando la necesidad de circuitos especiales para la resta.
+</div>
+
+<div class="fig">
+  <img src="https://baltazarstudios.com/wp-content/uploads/2014/03/z80-die-shots-2.jpg" alt="Die del Z80">
+  <p class="fig-cap"><b>Fig. 4.3</b> Die del procesador Zilog Z80 (1976) bajo microscopio. Cada región geométrica corresponde a un subsistema funcional: ALU, banco de registros, decodificador de instrucciones. Las estructuras repetitivas son transistores MOS implementando puertas lógicas.</p>
+</div>
+</section>
+
+<!-- ══ EPÍLOGO ══ -->
+<div style="border-top:2px solid var(--black);padding:3rem 0 0;margin-top:3rem;">
+  <h2 style="font-size:1.4rem;margin-bottom:1rem;">Epílogo — El legado y el horizonte</h2>
+  <p>La arquitectura de computadores es una disciplina construida sobre capas: las puertas booleanas habilitan la ALU, que habilita la CPU, que implementa von Neumann, que ejecuta sistemas operativos, que hospedan aplicaciones, que crean valor humano. Comprender cada capa es comprender <em>por qué</em> la tecnología funciona como lo hace.</p>
+  <p>El futuro apunta hacia paradigmas que trascienden el modelo von Neumann: <em>computación cuántica</em> (superposición y entrelazamiento como recursos), <em>computación neuromórfica</em> (chips que imitan la arquitectura del cerebro), <em>procesamiento en memoria</em> (para eliminar el cuello de botella) y <em>aceleradores de dominio específico</em> para aprendizaje automático y criptografía.</p>
+  <p>La historia de la computación es, en definitiva, la historia de la humanidad aprendiendo a delegar el pensamiento mecánico a las máquinas, para liberar el pensamiento creativo a las personas.</p>
+</div>
+
+    <div class="book-foot">
+      Arquitectura de Computadores &nbsp;·&nbsp; Investigación Académica Completa &nbsp;·&nbsp; 2025
+    </div>
+
+    </div><!-- /book -->
+  </main><!-- /content-wrapper -->
+</div><!-- /app-container -->
+
+<!-- ════════════ FLOATING CONTROLS (READER SETTINGS) ════════════ -->
+<div class="reader-settings-container">
+  <button class="reader-settings-toggle" id="settings-toggle-btn" aria-label="Configuración de lectura">
+    <i data-lucide="settings" width="22" height="22"></i>
+  </button>
+  <div class="reader-settings-panel" id="settings-panel">
+    <div>
+      <p class="settings-section-title">Tema de Lectura</p>
+      <div class="settings-row">
+        <button class="theme-btn theme-btn-sepia active" data-theme="sepia" aria-label="Tema Sepia">
+          <i data-lucide="book-open" width="14" height="14"></i> Sepia
+        </button>
+        <button class="theme-btn theme-btn-light" data-theme="light" aria-label="Tema Claro">
+          <i data-lucide="sun" width="14" height="14"></i> Claro
+        </button>
+        <button class="theme-btn theme-btn-dark" data-theme="dark" aria-label="Tema Oscuro">
+          <i data-lucide="moon" width="14" height="14"></i> Oscuro
+        </button>
+      </div>
+    </div>
+    
+    <div>
+      <p class="settings-section-title">Tipografía</p>
+      <div class="settings-row">
+        <button class="font-btn active" id="font-serif-btn">Serif</button>
+        <button class="font-btn" id="font-sans-btn">Sans-Serif</button>
+      </div>
+    </div>
+    
+    <div>
+      <p class="settings-section-title">Tamaño de Texto</p>
+      <div class="settings-row">
+        <button class="size-btn" id="size-dec-btn">A-</button>
+        <button class="size-btn active" id="size-default-btn">Normal</button>
+        <button class="size-btn" id="size-inc-btn">A+</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Lucide icons ──────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  // Replace <i data-lucide="..."> tags
+  lucide.createIcons();
+
+  // Wrap all tables in a scrollable wrapper dynamically
+  document.querySelectorAll('.data-table').forEach(table => {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'data-table-wrap';
+    table.parentNode.insertBefore(wrapper, table);
+    wrapper.appendChild(table);
+  });
+
+  // ── Card data ─────────────────────────────────────────────────────────
+  const babbageCards = [
+    { icon: 'database',    title: 'El Store',         text: 'Equivalente a la RAM; almacenaba hasta 1 000 números de 50 dígitos en ruedas dentadas.' },
+    { icon: 'cpu',         title: 'El Mill',           text: 'Unidad de procesamiento que ejecutaba operaciones aritméticas; antecedente directo de la ALU.' },
+    { icon: 'layout-grid', title: 'Tarjetas perforadas', text: 'Adoptadas del telar de Jacquard; permitían programar secuencias de instrucciones.' },
+    { icon: 'user',        title: 'Ada Lovelace',      text: 'Publicó en 1843 el primer algoritmo destinado a ser procesado por una máquina.' },
+  ];
+
+  const cpuCards = [
+    { icon: 'calculator',    title: 'ALU',           text: 'Ejecuta operaciones aritméticas y lógicas. En procesadores modernos se replican múltiples ALUs para operar en paralelo.' },
+    { icon: 'sliders',       title: 'UC',            text: 'Decodifica instrucciones y genera señales de control que coordinan todos los componentes.' },
+    { icon: 'layers',        title: 'Registros',     text: 'Memoria ultrarrápida integrada en la CPU: PC, IR, MAR, MDR, acumulador.' },
+    { icon: 'zap',           title: 'Caché L1/L2/L3', text: 'SRAM de alta velocidad que reduce la latencia de acceso a los datos más usados.' },
+    { icon: 'activity',      title: 'FPU',           text: 'Unidad de punto flotante IEEE 754; indispensable para gráficos, simulación e IA.' },
+    { icon: 'clock',         title: 'Reloj',         text: 'Generador de pulsos que sincroniza todas las operaciones. Frecuencias típicas: 2–5 GHz.' },
+  ];
+
+  const ioCards = [
+    { icon: 'keyboard',   title: 'Entrada',       text: 'Teclado, ratón, escáner, micrófono, cámara. Convierten señales físicas en datos digitales.' },
+    { icon: 'monitor',    title: 'Salida',         text: 'Monitor, impresora, altavoces. Convierten datos digitales en señales perceptibles.' },
+    { icon: 'hard-drive', title: 'Almacenamiento', text: 'SSD, HDD, USB. Dispositivos no volátiles de entrada/salida simultánea.' },
+    { icon: 'wifi',       title: 'Comunicación',   text: 'Ethernet, Wi-Fi, Bluetooth. Intercambio de datos con redes y dispositivos remotos.' },
+  ];
+
+  const hazardCards = [
+    { icon: 'alert-triangle', title: 'Hazard de datos',     text: 'Una instrucción necesita el resultado de una anterior aún en ejecución. Soluciones: forwarding o stalls (burbujas).' },
+    { icon: 'git-branch',     title: 'Hazard de control',   text: 'Un salto condicional invalida instrucciones ya cargadas. Solución: predicción de salto (branch prediction).' },
+    { icon: 'server',         title: 'Hazard estructural',  text: 'Dos instrucciones necesitan el mismo recurso simultáneamente. Solución: duplicar unidades o separar cachés.' },
+  ];
+
+  function renderCards(containerId, cards) {
+    const el = document.getElementById(containerId);
+    if (!el) return;
+    el.innerHTML = cards.map(c => `
+      <div class="icon-card">
+        <div class="ic-icon"><i data-lucide="${c.icon}" width="20" height="20" stroke-width="1.5"></i></div>
+        <div class="ic-title">${c.title}</div>
+        <div class="ic-text">${c.text}</div>
+      </div>`).join('');
+    lucide.createIcons({ nodes: el.querySelectorAll('[data-lucide]') });
+  }
+
+  renderCards('babbage-cards', babbageCards);
+  renderCards('cpu-cards',     cpuCards);
+  renderCards('io-cards',      ioCards);
+  renderCards('hazard-cards',  hazardCards);
+
+  // ── Chart.js defaults (monochrome) ──────────────────────────────────
+  Chart.defaults.font.family = '"Plus Jakarta Sans", "Inter", sans-serif';
+  Chart.defaults.font.size   = 11;
+  Chart.defaults.color       = '#888';
+
+  // ── Moore's Law Chart ────────────────────────────────────────────────
+  window.chartMoore = new Chart(document.getElementById('mooreLawChart'), {
+    type: 'line',
+    data: {
+      labels: ['1971','1974','1978','1982','1985','1989','1993','1997','1999','2003','2006','2012','2016','2020','2023'],
+      datasets: [{
+        label: 'Transistores por chip',
+        data: [2300, 6000, 29000, 120000, 275000, 1200000, 3100000, 7500000, 24000000, 55000000, 291000000, 3100000000, 7200000000, 15000000000, 80000000000],
+        borderColor: '#1c1c1c',
+        borderWidth: 1.5,
+        pointBackgroundColor: '#8b1a1a',
+        pointRadius: 4,
+        fill: false,
+        tension: 0.2
+      }]
+    },
+    options: {
+      scales: {
+        y: { type: 'logarithmic', grid: { color: '#eee' },
+             ticks: { callback: v => v >= 1e9 ? (v/1e9)+'B' : v >= 1e6 ? (v/1e6)+'M' : v >= 1e3 ? (v/1e3)+'K' : v } },
+        x: { grid: { color: '#eee' } }
+      },
+      plugins: { legend: { display: false } }
+    }
+  });
+
+  // ── Memory hierarchy scatter ──────────────────────────────────────────
+  window.chartMem = new Chart(document.getElementById('memChart'), {
+    type: 'scatter',
+    data: {
+      datasets: [{
+        label: 'Niveles de memoria',
+        data: [
+          { x: 1,     y: 0.064,  label: 'Registros' },
+          { x: 5,     y: 0.064,  label: 'L1' },
+          { x: 25,    y: 1,      label: 'L2' },
+          { x: 100,   y: 32,     label: 'L3' },
+          { x: 200,   y: 32768,  label: 'RAM' },
+          { x: 50000, y: 2048000, label: 'SSD' },
+          { x: 10000000, y: 8192000, label: 'HDD' },
+        ],
+        backgroundColor: '#1c1c1c',
+        pointBackgroundColor: '#1c1c1c',
+        pointRadius: 7,
+        pointHoverRadius: 9,
+      }]
+    },
+    options: {
+      scales: {
+        x: { type:'logarithmic', title:{ display:true, text:'Latencia (ciclos o ns)', font:{size:10} }, grid:{color:'#eee'},
+             ticks:{ callback: v => v >= 1e6 ? (v/1e6)+'M' : v >= 1e3 ? (v/1e3)+'K' : v } },
+        y: { type:'logarithmic', title:{ display:true, text:'Capacidad (kB)', font:{size:10} }, grid:{color:'#eee'},
+             ticks:{ callback: v => v >= 1e6 ? (v/1e6)+'TB' : v >= 1e3 ? (v/1e3)+'GB' : v+'kB' } }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => ctx.raw.label } }
+      }
+    }
+  });
+
+  // ── PCIe bandwidth bar chart ─────────────────────────────────────────
+  window.chartBus = new Chart(document.getElementById('busChart'), {
+    type: 'bar',
+    data: {
+      labels: ['ISA\n1981','PCI\n1992','PCIe 1.0\n2003','PCIe 3.0\n2010','PCIe 4.0\n2017','PCIe 5.0\n2019','PCIe 6.0\n2022'],
+      datasets: [{
+        label: 'GB/s (×16)',
+        data: [0.008, 0.533, 4, 16, 32, 64, 128],
+        backgroundColor: '#1c1c1c',
+        borderWidth: 0,
+        borderRadius: 2,
+      }]
+    },
+    options: {
+      scales: {
+        y: { type:'logarithmic', title:{display:true,text:'GB/s',font:{size:10}}, grid:{color:'#eee'},
+             ticks:{ callback: v => v+'GB/s' } },
+        x: { grid:{display:false} }
+      },
+      plugins: { legend: { display: false } }
+    }
+  });
+
+  // ─── FLOATING READER PANEL LOGIC ───
+  const settingsToggle = document.getElementById('settings-toggle-btn');
+  const settingsPanel = document.getElementById('settings-panel');
+  if (settingsToggle && settingsPanel) {
+    settingsToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      settingsToggle.classList.toggle('active');
+      settingsPanel.classList.toggle('open');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!settingsPanel.contains(e.target) && e.target !== settingsToggle && !settingsToggle.contains(e.target)) {
+        settingsPanel.classList.remove('open');
+        settingsToggle.classList.remove('active');
+      }
+    });
+  }
+
+  // Theme Toggling & Chart Updates
+  function getThemeColor(variableName) {
+    return getComputedStyle(document.body).getPropertyValue(variableName).trim();
+  }
+
+  function updateChartsTheme() {
+    const textColor = getThemeColor('--chart-text') || '#888';
+    const gridColor = getThemeColor('--chart-grid') || '#eee';
+    const accentColor = getThemeColor('--accent-color') || '#8b1a1a';
+    const mainColor = getThemeColor('--text-color') || '#1c1c1c';
+
+    // Update Chart.js default fonts to match Sans mode if active
+    const activeFont = document.body.classList.contains('font-sans-mode') ? '"Plus Jakarta Sans", sans-serif' : '"EB Garamond", serif';
+    Chart.defaults.font.family = activeFont;
+
+    if (window.chartMoore) {
+      window.chartMoore.data.datasets[0].borderColor = mainColor;
+      window.chartMoore.data.datasets[0].pointBackgroundColor = accentColor;
+      window.chartMoore.options.scales.x.grid.color = gridColor;
+      window.chartMoore.options.scales.y.grid.color = gridColor;
+      window.chartMoore.options.scales.x.ticks.color = textColor;
+      window.chartMoore.options.scales.y.ticks.color = textColor;
+      window.chartMoore.update();
+    }
+
+    if (window.chartMem) {
+      window.chartMem.data.datasets[0].backgroundColor = mainColor;
+      window.chartMem.data.datasets[0].pointBackgroundColor = mainColor;
+      window.chartMem.options.scales.x.grid.color = gridColor;
+      window.chartMem.options.scales.y.grid.color = gridColor;
+      window.chartMem.options.scales.x.ticks.color = textColor;
+      window.chartMem.options.scales.y.ticks.color = textColor;
+      window.chartMem.options.scales.x.title.color = textColor;
+      window.chartMem.options.scales.y.title.color = textColor;
+      window.chartMem.update();
+    }
+
+    if (window.chartBus) {
+      window.chartBus.data.datasets[0].backgroundColor = (ctx) => ctx.dataIndex === 6 ? accentColor : mainColor;
+      window.chartBus.options.scales.x.grid.color = gridColor;
+      window.chartBus.options.scales.y.grid.color = gridColor;
+      window.chartBus.options.scales.x.ticks.color = textColor;
+      window.chartBus.options.scales.y.ticks.color = textColor;
+      window.chartBus.update();
+    }
+  }
+
+  const themeBtns = document.querySelectorAll('.theme-btn');
+  themeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      themeBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      const theme = btn.dataset.theme;
+      document.body.classList.remove('theme-sepia', 'theme-light', 'theme-dark');
+      document.body.classList.add('theme-' + theme);
+      
+      localStorage.setItem('book-reader-theme', theme);
+      setTimeout(updateChartsTheme, 50);
+    });
+  });
+
+  // Font style switcher
+  const fontSerifBtn = document.getElementById('font-serif-btn');
+  const fontSansBtn = document.getElementById('font-sans-btn');
+  if (fontSerifBtn && fontSansBtn) {
+    fontSerifBtn.addEventListener('click', () => {
+      fontSerifBtn.classList.add('active');
+      fontSansBtn.classList.remove('active');
+      document.body.classList.remove('font-sans-mode');
+      localStorage.setItem('book-reader-font', 'serif');
+      setTimeout(updateChartsTheme, 50);
+    });
+
+    fontSansBtn.addEventListener('click', () => {
+      fontSansBtn.classList.add('active');
+      fontSerifBtn.classList.remove('active');
+      document.body.classList.add('font-sans-mode');
+      localStorage.setItem('book-reader-font', 'sans');
+      setTimeout(updateChartsTheme, 50);
+    });
+  }
+
+  // Font size switcher
+  const sizeDecBtn = document.getElementById('size-dec-btn');
+  const sizeDefaultBtn = document.getElementById('size-default-btn');
+  const sizeIncBtn = document.getElementById('size-inc-btn');
+
+  function setFontSizeClass(sizeClass) {
+    document.body.classList.remove('size-sm', 'size-md', 'size-lg', 'size-xl');
+    document.body.classList.add(sizeClass);
+    localStorage.setItem('book-reader-size', sizeClass);
+    
+    [sizeDecBtn, sizeDefaultBtn, sizeIncBtn].forEach(btn => {
+      if (btn) btn.classList.remove('active');
+    });
+    if (sizeClass === 'size-sm' && sizeDecBtn) sizeDecBtn.classList.add('active');
+    if (sizeClass === 'size-md' && sizeDefaultBtn) sizeDefaultBtn.classList.add('active');
+    if (sizeClass === 'size-lg' && sizeIncBtn) sizeIncBtn.classList.add('active');
+  }
+
+  if (sizeDecBtn && sizeDefaultBtn && sizeIncBtn) {
+    sizeDecBtn.addEventListener('click', () => setFontSizeClass('size-sm'));
+    sizeDefaultBtn.addEventListener('click', () => setFontSizeClass('size-md'));
+    sizeIncBtn.addEventListener('click', () => setFontSizeClass('size-lg'));
+  }
+
+  // Mobile sidebar toggling
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  const sidebar = document.getElementById('sidebar');
+  if (mobileMenuToggle && sidebar) {
+    mobileMenuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      sidebar.classList.toggle('open');
+    });
+
+    const contentWrapper = document.querySelector('.content-wrapper');
+    if (contentWrapper) {
+      contentWrapper.addEventListener('click', () => {
+        sidebar.classList.remove('open');
+      });
+    }
+  }
+
+  // Reading Progress & Scrollspy
+  window.addEventListener('scroll', () => {
+    const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+    const prgBar = document.getElementById('reading-progress');
+    if (prgBar) prgBar.style.width = scrolled + '%';
+    
+    // Highlight active TOC item (ScrollSpy)
+    const sections = document.querySelectorAll('section, .ch-wrap, #cover');
+    const navItems = document.querySelectorAll('.sidebar-item');
+    
+    let currentActiveId = 'cover';
+    sections.forEach(sec => {
+      const secTop = sec.offsetTop;
+      if (window.scrollY >= secTop - 150) {
+        if (sec.id) {
+          if (sec.id.startsWith('cap') || sec.id === 'cover' || sec.id === 'toc') {
+            currentActiveId = sec.id;
+          } else {
+            // Map sub-sections to their main chapters
+            if (['s-precursores', 's-turing', 's-eniac', 's-vneumann', 's-generaciones'].includes(sec.id)) {
+              currentActiveId = 'cap1';
+            } else if (['s-cpu', 's-memoria', 's-io'].includes(sec.id)) {
+              currentActiveId = 'cap2';
+            } else if (['s-risc-cisc', 's-buses'].includes(sec.id)) {
+              currentActiveId = 'cap3';
+            } else if (['s-pipeline', 's-logica'].includes(sec.id)) {
+              currentActiveId = 'cap4';
+            }
+          }
+        }
+      }
+    });
+    
+    navItems.forEach(item => {
+      item.classList.remove('active');
+      const link = item.querySelector('a');
+      if (link && link.getAttribute('href') === '#' + currentActiveId) {
+        item.classList.add('active');
+      }
+    });
+  });
+
+  // Load preferences on startup
+  const savedTheme = localStorage.getItem('book-reader-theme') || 'sepia';
+  const savedFont = localStorage.getItem('book-reader-font') || 'serif';
+  const savedSize = localStorage.getItem('book-reader-size') || 'size-md';
+
+  document.body.classList.remove('theme-sepia');
+  document.body.classList.add('theme-' + savedTheme);
+  themeBtns.forEach(btn => {
+    btn.classList.remove('active');
+    if (btn.dataset.theme === savedTheme) {
+      btn.classList.add('active');
+    }
+  });
+
+  if (savedFont === 'sans') {
+    document.body.classList.add('font-sans-mode');
+    if (fontSansBtn) fontSansBtn.classList.add('active');
+    if (fontSerifBtn) fontSerifBtn.classList.remove('active');
+  } else {
+    document.body.classList.remove('font-sans-mode');
+    if (fontSerifBtn) fontSerifBtn.classList.add('active');
+    if (fontSansBtn) fontSansBtn.classList.remove('active');
+  }
+
+  setFontSizeClass(savedSize);
+  setTimeout(updateChartsTheme, 200);
+});
+</script>
+
+</body>
+</html>

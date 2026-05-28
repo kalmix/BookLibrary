@@ -1,18 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
-    Microsoft ResX Schema
+  <!-- 
+    Microsoft ResX Schema 
 
     Version 2.0
 
-    <?xml version="1.0" encoding="utf-8"?>
-    <root>
-      <!--
-        Microsoft ResX Schema
-
-        Version 2.0
-
-        The primary goals of this format is to allow a simple XML format
+    The primary goals of this format is to allow a simple XML format
         that is mostly human readable. The generation and parsing of the
         various data types are done through the TypeConverter classes
         associated with the data types.
@@ -127,29 +120,3 @@
       <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
       <!-- Icon removed from resources: using runtime file icons to avoid duplicates -->
     </root>
-        Tv8eM07/HjNO/xswS/9rgpj/y+X1/8ji8//K4/T/y+T1/8zl9v/N5vb/zeb2/83m9v/N5vb/zeb2/83m
-        9v/N5vb/r87i/bDP4/+x0OT/stHl/7TS5v+10+b/ttTn/7jV6P+51un/utfq/7vY6v/D3/D/boWb/xsw
-        S/8eM07/HjNO/x4zTv8eM07/GzBL/2uCmP/L5fX/yeP0/8vk9f/M5fX/zeb2/83m9v/N5vb/zeb2/83m
-        9v/N5vb/zeb2/83m9v2wz+PwsdDk/7LR5f+z0uX/tdPm/7bU5/+31ej/udbp/7rX6v+72Or/vNnr/8Tf
-        8f9uhZv/GzBL/x4zTv8eM07/HjNO/x4zTv8bMEv/a4KY/8zm9v/K5PT/zOX1/83m9v/N5vb/zeb2/83m
-        9v/N5vb/zeb2/83m9v/N5vb/zeb277HQ5Mey0eT/s9Ll/7TS5v+20+f/t9Xo/7jW6P+51+n/u9jq/7zZ
-        6/+92ez/xODx/22Emv8ZLkn/HDFM/xwxTP8cMUz/HDFM/xkuSf9qgZf/zeb2/8vl9f/N5vb/zeb2/83m
-        9v/N5vb/zeb2/83m9v/N5vb/zeb2/83m9v/N5vbHstDkebPR5fy00ub/tdPn/7fU5/+41ej/udbp/7rX
-        6v+82Ov/vdns/77a7P/E3/H/kam9/0NZcf9CWHD/Qlhw/0JYcP9CWHD/Q1hx/5Cnu//N5/f/zOX1/83m
-        9v/N5vb/zeb2/83m9v/N5vb/zeb2/83m9v/N5vb/zeb2/M3m9nmz0eUhtNLmz7XT5v+21Of/t9Xo/7nW
-        6f+61+r/u9jq/73Z6/++2uz/v9vt/8Hc7v/E3/D/wNnq/7/Z6v/A2er/wNrr/8Ha6//C2+z/yuP0/8zl
-        9f/N5vb/zeb2/83m9v/N5vb/zeb2/83m9v/N5vb/zeb2/83m9v/N5vbPzeb2IbbU5wC10+ZYttTn8bfV
-        6P+41un/utfp/7vY6v+82ev/vdrs/7/b7f/A3O7/wd3u/8Pe7//E3/H/xuDx/8fh8v/I4vP/yuP0/8vl
-        9f/M5fX/zeb2/83m9v/N5vb/zeb2/83m9v/N5vb/zeb2/83m9v/N5vb/zeb28c3m9ljN5vYAttTnALXT
-        5gS31OhzuNXo8rnW6f+71+r/vNjr/73Z7P++2u3/wNzt/8Hd7v/C3e//xN7w/8Xg8f/G4fL/x+Ly/8nj
-        8//K5PT/y+X1/8zm9v/N5vb/zeb2/83m9v/N5vb/zeb2/83m9v/N5vb/zeb2/83m9vLN5vZyzeb2BM3m
-        9gAAAAAAuNXpALjV6AW51ulXutfq0LvY6/y92ev/vtrs/7/b7f/B3O7/wt3v/8Pe8P/E3/D/xuDx/8fh
-        8v/I4vP/yuP0/8vk9f/M5fX/zeb2/83m9v/N5vb/zeb2/83m9v/N5vb/zeb2/83m9vzN5vbQzeb2V83m
-        9gXN5vYAAAAAAAAAAAAAAAAAutjqAN7p/wC72OogvNnrer7a7Mm/2+3wwNzu/cLd7//D3u//xN/w/8Xg
-        8f/H4fL/yOLz/8nj8//K5PT/zOX1/83m9v/N5vb/zeb2/83m9v/N5vb/zeb2/c3m9vDN5vbJzeb2es3m
-        9iDP5/UAzeb2AAAAAAAAAAAA8AAAD8AAAAOAAAABgAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAIAAAAGAAAABwAAAA/AAAA8=
-</value>
-  </data>
-</root>
